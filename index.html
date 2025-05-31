@@ -30,6 +30,7 @@
             border-radius: 50%;
             display: block;
             margin: 0 auto 15px;
+            object-fit: cover;
         }
 
         .sidebar h2 {
@@ -60,6 +61,8 @@
         .contact-info i {
             margin-right: 10px;
             color: #555;
+            width: 20px;
+            text-align: center;
         }
 
         .contact-info a {
@@ -74,11 +77,13 @@
         .content {
             flex-grow: 1;
             padding: 20px 40px;
+            max-width: 700px;
         }
 
         .content h1 {
             font-size: 2em;
             color: #333;
+            margin-top: 0;
         }
 
         .content h2 {
@@ -92,6 +97,7 @@
         .content p, .content ul {
             font-size: 0.95em;
             color: #444;
+            line-height: 1.6;
         }
 
         ul {
@@ -107,8 +113,26 @@
             color: #007acc;
             text-decoration: none;
         }
+        
         a:hover {
             text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .sidebar {
+                width: auto;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            .content {
+                padding: 20px;
+            }
         }
     </style>
 </head>

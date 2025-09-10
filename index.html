@@ -6,21 +6,65 @@
     <title>Zahra Gharehmahmoodlee - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --sidebar-bg: #f3f4f6;
+            --border-color: #ddd;
+            --accent-color: #007acc;
+            --heading-color: #333;
+            --content-bg: #ffffff;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #e6e6e6;
+            --sidebar-bg: #2d2d2d;
+            --border-color: #444;
+            --accent-color: #4da6ff;
+            --heading-color: #ffffff;
+            --content-bg: #242424;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 40px 0;
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 5px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            z-index: 100;
         }
 
         .sidebar {
             width: 280px;
             padding: 20px;
-            border-right: 1px solid #ddd;
-            background-color: #f3f4f6;
+            border-right: 1px solid var(--border-color);
+            background-color: var(--sidebar-bg);
             text-align: center;
         }
 
@@ -31,16 +75,17 @@
             display: block;
             margin: 0 auto 15px;
             object-fit: cover;
+            border: 2px solid var(--border-color);
         }
 
         .sidebar h2 {
             font-size: 1.5em;
             margin-top: 0;
-            color: #333;
+            color: var(--heading-color);
         }
 
         .sidebar p {
-            color: #555;
+            color: var(--text-color);
             font-size: 0.9em;
             margin-bottom: 1em;
         }
@@ -60,13 +105,13 @@
 
         .contact-info i {
             margin-right: 10px;
-            color: #555;
+            color: var(--text-color);
             width: 20px;
             text-align: center;
         }
 
         .contact-info a {
-            color: #007acc;
+            color: var(--accent-color);
             text-decoration: none;
         }
 
@@ -78,25 +123,29 @@
             flex-grow: 1;
             padding: 20px 40px;
             max-width: 700px;
+            background-color: var(--content-bg);
+            border-radius: 8px;
+            margin: 0 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .content h1 {
             font-size: 2em;
-            color: #333;
+            color: var(--heading-color);
             margin-top: 0;
         }
 
         .content h2 {
             font-size: 1.5em;
-            color: #333;
-            border-bottom: 2px solid #ddd;
+            color: var(--heading-color);
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 5px;
             margin-top: 30px;
         }
 
         .content p, .content ul {
             font-size: 0.95em;
-            color: #444;
+            color: var(--text-color);
             line-height: 1.6;
         }
 
@@ -107,10 +156,31 @@
 
         ul li {
             margin-bottom: 8px;
+            position: relative;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .two-column ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .two-column li:before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
         }
 
         a {
-            color: #007acc;
+            color: var(--accent-color);
             text-decoration: none;
         }
         
@@ -124,85 +194,154 @@
                 padding: 20px;
             }
             
+            .container {
+                flex-direction: column;
+            }
+            
             .sidebar {
                 width: auto;
                 border-right: none;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid var(--border-color);
             }
             
             .content {
                 padding: 20px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-toggle {
+                position: relative;
+                margin: 0 auto 20px auto;
+                width: fit-content;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <img src="zahra.jpg" alt="Zahra Gharehmahmoodlee">
-        <h2>Zahra Gharehmahmoodlee</h2>
-        <p>Full-Stack Developer | Digital Sculptor | AI Researcher</p>
-        <div class="contact-info">
-            <p><i class="fas fa-map-marker-alt"></i> Sari, Iran</p>
-            <p><i class="fas fa-university"></i> <a href="https://aut.ac.ir" target="_blank">Amirkabir University of Technology</a></p>
-            <p><i class="fas fa-envelope"></i> <a href="mailto:zahramahmoodlee2012@gmail.com">Email</a></p>
-            <p><i class="fab fa-github"></i> <a href="https://github.com/zahramh99" target="_blank">GitHub</a></p>
-            <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank">LinkedIn</a></p>
-            <p><i class="fas fa-palette"></i> <a href="https://www.artstation.com/lunebelue" target="_blank">ArtStation</a></p>
+    <div class="container">
+        <div class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+            <span>Dark Mode</span>
+        </div>
+
+        <div class="sidebar">
+            <img src="zahra.jpg" alt="Zahra Gharehmahmoodlee">
+            <h2>Zahra Gharehmahmoodlee</h2>
+            <p>Full-Stack Developer | Digital Sculptor | AI Researcher</p>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> Sari, Iran</p>
+                <p><i class="fas fa-university"></i> <a href="https://aut.ac.ir" target="_blank">Amirkabir University of Technology</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:zahramahmoodlee2012@gmail.com">Email</a></p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/zahramh99" target="_blank">GitHub</a></p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank">LinkedIn</a></p>
+                <p><i class="fas fa-palette"></i> <a href="https://www.artstation.com/lunebelue" target="_blank">ArtStation</a></p>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1>Zahra Gharehmahmoodlee</h1>
+            <p>Curious and driven Computer Science graduate exploring the frontiers of AI, Computer Vision, and NLP, with a focus on large language models, generative AI, and self-supervised methods. I'm currently diving into 3D animation at Inverse School while coding as a web developer, thriving at the intersection of technology and storytelling. I love games with rich, open worlds like Skyrim and Fallout 4, and I'm passionate about 3D design, immersive narratives, geospatial computer vision, 3D reconstruction, and XR/VR. I'm eager to bring my mix of creativity and technical skills to research in generative models, multimodal AI, and immersive technologies.</p>
+
+            <h2>Education</h2>
+            <ul>
+                <li>B.S. in Computer Science, Amirkabir University of Technology, Tehran, Iran</li>
+                <li>3D Modeling Student, Inverse School</li>
+            </ul>
+
+            <h2>Academic Research Interests</h2>
+            <div class="two-column">
+                <ul>
+                    <li>Computer Vision & 3D Reconstruction</li>
+                    <li>Deep Generative Models & Self-Supervised Learning</li>
+                    <li>Multimodal AI (Vision–Language Models)</li>
+                    <li>Geospatial Modeling & Remote Sensing</li>
+                </ul>
+                <ul>
+                    <li>Human–Computer Interaction & Interactive Systems</li>
+                    <li>Simulation & Agent-Based Modeling</li>
+                    <li>Natural Language Processing & Retrieval-Augmented Systems</li>
+                    <li>Artificial Intelligence & Machine Learning</li>
+                    <li>AR/VR/MR for Visualization & Design</li>
+                </ul>
+            </div>
+
+            <h2>Work Experience</h2>
+            <ul>
+                <li>Research Assistant (Jul 2025 - Present)
+                    <ul>
+                        <li>Institute for Research in Fundamental Sciences (IPM)</li>
+                    </ul>
+                </li>
+                <li>Research Assistant @ DS Lab, Sep 2022 – Nov 2024
+                    <ul>
+                        <li>Developed retrieval-augmented NLP systems for large-scale sentiment analysis under the supervision of Dr. Mohammad Akbari.</li>
+                    </ul>
+                </li>
+                <li>Instructional Apprentice and Teaching Assistant @ Amirkabir University of Technology, Spring 2021 - Fall 2023
+                    <ul>
+                        <li>Courses: Artificial Intelligence and Workshop (Fall 2023), Computer Workshop (Fall 2023), Combinatorics and Applications (Spring 2023).</li>
+                        <li>Instructional roles in: Software Engineering (Spring 2021), System Analysis and Design (Fall 2021).</li>
+                    </ul>
+                </li>
+                <li>Front-End Developer @ Webcore.ir, Jul 2021 – Apr 2022
+                    <ul>
+                        <li>Developed optimized frontend architectures for enterprise applications.</li>
+                    </ul>
+                </li>
+                <li>Freelance Web Developer, Nov 2024 – Current</li>
+            </ul>
+
+            <h2>Languages</h2>
+            <ul>
+                <li>Persian: Native</li>
+                <li>English: IELTS 7</li>
+                <li>Turkish: Native</li>
+            </ul>
+
+            <h2>Volunteering and Honors</h2>
+            <ul>
+                <li>Cooperation in ICAISV 2023 Webinar, Amirkabir University of Technology (24–25 May 2023)</li>
+                <li>Scientific Author in Halghe Journal, Amirkabir University of Technology (Oct 2021–Jan 2022)</li>
+                <li>Chair of Git Webinar, Amirkabir University of Technology (Sep 2020–Dec 2020)</li>
+                <li>1st Place, Youth Storytelling Awards (Provincial), 2012</li>
+                <li>2nd Place, Provincial Theater Competition, 2014</li>
+            </ul>
         </div>
     </div>
 
-    <div class="content">
-        <h1>Zahra Gharehmahmoodlee</h1>
-        <p>Computer Science graduate researching Large Language Models for industrial and creative applications. Currently studying 3D Animation at Inverse School and working as a web developer, I thrive at the intersection of technology and storytelling, passionate about game development, 3D design, and immersive narrative experiences.</p>
-
-        <h2>Education</h2>
-        <ul>
-            <li>B.S. in Computer Science, Amirkabir University of Technology, Tehran, Iran</li>
-            <li>3D Modeling Student, Inverse School</li>
-        </ul>
-
-        <h2>Academic Interests</h2>
-        <ul>
-            <li>Large (Vision) Language Models</li>
-            <li>Deep Generative Models</li>
-            <li>Self-supervised Learning</li>
-            <li>Computer Vision </li>
-            <li>HCI </li>
-            <li>Computer Animation</li>
-            <li>Agent-based Modelling</li>
-        </ul>
-
-        <h2>Work Experience</h2>
-        <ul>
-            <li>Research Assistant @ IDS Lab, Sep 2022 – Nov 2024
-                <ul>
-                    <li>Developed retrieval-augmented NLP systems for large-scale sentiment analysis under the supervision of Dr. Mohammad Akbari.</li>
-                </ul>
-            </li>
-            <li>Instructional Apprentice and Teaching Assistant @ Amirkabir University of Technology, Spring 2021 - Fall 2023
-                <ul>
-                    <li>Courses: Artificial Intelligence and Workshop (Fall 2023), Computer Workshop (Fall 2023), Combinatorics and Applications (Spring 2023).</li>
-                    <li>Instructional roles in: Software Engineering (Spring 2021), System Analysis and Design (Fall 2021).</li>
-                </ul>
-            </li>
-            <li>Front-End Developer @ Webcore.ir, Jul 2021 – Apr 2022
-                <ul>
-                    <li>Developed optimized frontend architectures for enterprise applications.</li>
-                </ul>
-            </li>
-            <li>Freelance Web Developer, Nov 2024 – Current</li>
-        </ul>
-
-        <h2>Volunteering and Honors</h2>
-        <ul>
-            <li>Cooperation in ICAISV 2023 Webinar, Amirkabir University of Technology (24–25 May 2023)</li>
-            <li>Scientific Author in Halghe Journal, Amirkabir University of Technology (Oct 2021–Jan 2022)</li>
-            <li>Chair of Git Webinar, Amirkabir University of Technology (Sep 2020–Dec 2020)</li>
-            <li>1st Place, Youth Storytelling Awards (Provincial), 2012</li>
-            <li>2nd Place, Provincial Theater Competition, 2014</li>
-        </ul>
-    </div>
-
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        const text = themeToggle.querySelector('span');
+        
+        // Check for saved theme preference or respect OS preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+            text.textContent = 'Light Mode';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                text.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                text.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 </body>
 </html>

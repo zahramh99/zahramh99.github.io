@@ -14,6 +14,7 @@
             --accent-color: #007acc;
             --heading-color: #333;
             --content-bg: #ffffff;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .dark-mode {
@@ -24,101 +25,114 @@
             --accent-color: #4da6ff;
             --heading-color: #ffffff;
             --content-bg: #242424;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 40px 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            display: flex;
-            justify-content: center;
+            line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
             overflow-x: hidden;
         }
 
         .container {
-            display: flex;
-            width: 100%;
             max-width: 1200px;
-            position: relative;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Header & Theme Toggle */
+        .header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .theme-toggle {
-            position: absolute;
-            top: 10px;
-            right: 20px;
             background: var(--sidebar-bg);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 5px 10px;
+            border-radius: 30px;
+            padding: 8px 15px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.9em;
-            z-index: 100;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .theme-toggle:hover {
-            transform: scale(1.05);
-        }
-
-        .sidebar {
-            width: 280px;
-            padding: 20px;
-            border-right: 1px solid var(--border-color);
-            background-color: var(--sidebar-bg);
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            transform-style: preserve-3d;
-            transition: transform 0.5s ease;
-        }
-
-        .sidebar img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto 15px;
-            object-fit: cover;
-            border: 2px solid var(--border-color);
-            transition: all 0.5s ease;
-            transform-style: preserve-3d;
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            position: sticky;
+            top: 30px;
+            height: fit-content;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+        }
         
-        .sidebar img:hover {
-            transform: translateZ(20px) rotate(5deg);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .sidebar h2 {
-            font-size: 1.5em;
-            margin-top: 0;
+            text-align: center;
+            margin-bottom: 5px;
             color: var(--heading-color);
+            font-size: 1.6em;
         }
 
         .sidebar p {
-            color: var(--text-color);
-            font-size: 0.9em;
-            margin-bottom: 1em;
+            text-align: center;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 25px;
         }
 
         .contact-info {
-            text-align: left;
-            font-size: 0.9em;
-            margin-top: 20px;
-            line-height: 1.8;
+            margin-top: 25px;
         }
 
         .contact-info p {
             display: flex;
             align-items: center;
-            margin: 10px 0;
+            margin: 15px 0;
+            text-align: left;
+            color: var(--text-color);
             transition: transform 0.3s ease;
         }
         
@@ -127,193 +141,128 @@
         }
 
         .contact-info i {
-            margin-right: 10px;
-            color: var(--text-color);
+            margin-right: 12px;
+            color: var(--accent-color);
             width: 20px;
             text-align: center;
+            font-size: 1.1em;
         }
 
         .contact-info a {
-            color: var(--accent-color);
+            color: var(--text-color);
             text-decoration: none;
-            position: relative;
+            transition: color 0.3s ease;
         }
 
         .contact-info a:hover {
+            color: var(--accent-color);
             text-decoration: underline;
         }
-        
-        .contact-info a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--accent-color);
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease;
+
+        /* Content Styles */
+        .content {
+            background-color: var(--content-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .main-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--heading-color);
+            position: relative;
+            display: inline-block;
         }
         
-        .contact-info a:hover::after {
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.5s ease;
+        }
+        
+        .main-title:hover::after {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
 
-        .content {
-            flex-grow: 1;
-            padding: 20px 40px;
-            max-width: 700px;
-            background-color: var(--content-bg);
-            border-radius: 8px;
-            margin: 0 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
+        .intro-text {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
-        .content::before {
+        .section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+        
+        .section h2::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: -2px;
             left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-            opacity: 0;
-            animation: shimmer 8s infinite linear;
-        }
-        
-        @keyframes shimmer {
-            0% { opacity: 0; left: -100%; }
-            50% { opacity: 0.5; }
-            100% { opacity: 0; left: 100%; }
+            width: 60px;
+            height: 2px;
+            background: var(--accent-color);
         }
 
-        .content h1 {
-            font-size: 2em;
-            color: var(--heading-color);
-            margin-top: 0;
-            overflow: hidden;
-            border-right: .15em solid var(--accent-color);
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-            width: fit-content;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--accent-color); }
+        .section ul {
+            list-style-type: none;
+            padding-left: 0;
         }
 
-        .content h2 {
-            font-size: 1.5em;
-            color: var(--heading-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 5px;
-            margin-top: 30px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .content h2.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .content p, .content ul {
-            font-size: 0.95em;
-            color: var(--text-color);
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .content p.animate, .content ul.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        ul li {
-            margin-bottom: 8px;
+        .section li {
+            margin-bottom: 12px;
+            padding-left: 25px;
             position: relative;
             opacity: 0;
             transform: translateX(-20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
         
-        ul li.animate {
+        .section li.animate {
             opacity: 1;
             transform: translateX(0);
+        }
+
+        .section li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
         }
 
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 30px;
         }
 
-        .two-column ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .two-column li:before {
-            content: "•";
-            color: var(--accent-color);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-        
-        .skill-tag {
-            display: inline-block;
-            background: var(--sidebar-bg);
-            padding: 5px 12px;
-            margin: 4px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            transition: all 0.3s ease;
-            cursor: default;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        
-        .skill-tag.animate {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .skill-tag:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-        
         .timeline-item {
             position: relative;
             padding-left: 30px;
@@ -332,7 +281,7 @@
             content: '';
             position: absolute;
             left: 0;
-            top: 5px;
+            top: 8px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -343,7 +292,7 @@
             content: '';
             position: absolute;
             left: 5px;
-            top: 17px;
+            top: 20px;
             width: 2px;
             height: calc(100% + 10px);
             background: var(--accent-color);
@@ -352,85 +301,65 @@
         .timeline-item:last-child::after {
             display: none;
         }
-        
-        .network-graph {
-            position: relative;
-            height: 300px;
-            margin: 20px 0;
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: var(--sidebar-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
             opacity: 0;
-            transition: opacity 1s ease;
+            transform: scale(0.9);
         }
         
-        .network-graph.animate {
+        .skill-tag.animate {
             opacity: 1;
+            transform: scale(1);
         }
         
-        .node {
-            position: absolute;
+        .skill-tag:hover {
             background: var(--accent-color);
             color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            transform-origin: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .node:hover {
-            transform: scale(1.2);
-            z-index: 10;
+            transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        .link {
-            position: absolute;
-            height: 2px;
-            background: var(--accent-color);
-            transform-origin: 0 50%;
-            opacity: 0.3;
-            transition: opacity 0.3s ease;
-        }
-        
-        .node:hover + .link {
-            opacity: 0.8;
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-                padding: 20px;
-            }
-            
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
             .container {
-                flex-direction: column;
+                grid-template-columns: 1fr;
             }
             
             .sidebar {
-                width: auto;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-            
-            .content {
-                padding: 20px;
+                position: static;
+                margin-bottom: 30px;
             }
             
             .two-column {
                 grid-template-columns: 1fr;
             }
-            
-            .theme-toggle {
-                position: relative;
-                margin: 0 auto 20px auto;
-                width: fit-content;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
             
-            .network-graph {
-                height: 200px;
+            .content {
+                padding: 25px;
+            }
+            
+            .main-title {
+                font-size: 2em;
             }
         }
     </style>
@@ -438,15 +367,19 @@
 <body>
 
     <div class="container">
-        <div class="theme-toggle" id="themeToggle">
-            <i class="fas fa-moon"></i>
-            <span>Dark Mode</span>
+        <div class="header">
+            <h1 class="main-title">Zahra Gharehmahmoodlee</h1>
+            <div class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                <span>Dark Mode</span>
+            </div>
         </div>
 
-        <div class="sidebar" id="profileCard">
-            <img src="https://placehold.co/120x120/007acc/white?text=ZG" alt="Zahra Gharehmahmoodlee">
+        <aside class="sidebar">
+            <img src="https://placehold.co/150x150/007acc/white?text=ZG" alt="Zahra Gharehmahmoodlee" class="profile-img">
             <h2>Zahra Gharehmahmoodlee</h2>
             <p>Full-Stack Developer | Digital Sculptor | AI Researcher</p>
+            
             <div class="contact-info">
                 <p><i class="fas fa-map-marker-alt"></i> Sari, Iran</p>
                 <p><i class="fas fa-university"></i> <a href="https://aut.ac.ir" target="_blank">Amirkabir University of Technology</a></p>
@@ -455,93 +388,120 @@
                 <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank">LinkedIn</a></p>
                 <p><i class="fas fa-palette"></i> <a href="https://www.artstation.com/lunebelue" target="_blank">ArtStation</a></p>
             </div>
-        </div>
+        </aside>
 
-        <div class="content">
-            <h1>Zahra Gharehmahmoodlee</h1>
-            <p>Curious and driven Computer Science graduate exploring the frontiers of AI, Computer Vision, and NLP, with a focus on large language models, generative AI, and self-supervised methods. I'm currently diving into 3D animation at Inverse School while coding as a web developer, thriving at the intersection of technology and storytelling. I love games with rich, open worlds like Skyrim and Fallout 4, and I'm passionate about 3D design, immersive narratives, geospatial computer vision, 3D reconstruction, and XR/VR. I'm eager to bring my mix of creativity and technical skills to research in generative models, multimodal AI, and immersive technologies.</p>
+        <main class="content">
+            <section class="section">
+                <p class="intro-text">Curious and driven Computer Science graduate exploring the frontiers of AI, Computer Vision, and NLP, with a focus on large language models, generative AI, and self-supervised methods. I'm currently diving into 3D animation at Inverse School while coding as a web developer, thriving at the intersection of technology and storytelling. I love games with rich, open worlds like Skyrim and Fallout 4, and I'm passionate about 3D design, immersive narratives, geospatial computer vision, 3D reconstruction, and XR/VR. I'm eager to bring my mix of creativity and technical skills to research in generative models, multimodal AI, and immersive technologies.</p>
+            </section>
 
-            <h2>Education</h2>
-            <ul>
-                <li>B.S. in Computer Science, Amirkabir University of Technology, Tehran, Iran</li>
-                <li>3D Modeling Student, Inverse School</li>
-            </ul>
-
-            <h2>Academic Research Interests</h2>
-            <div class="network-graph" id="researchNetwork">
-                <!-- Nodes will be generated by JavaScript -->
-            </div>
-            <div class="two-column">
+            <section class="section">
+                <h2>Education</h2>
                 <ul>
-                    <li>Computer Vision & 3D Reconstruction</li>
-                    <li>Deep Generative Models & Self-Supervised Learning</li>
-                    <li>Multimodal AI (Vision–Language Models)</li>
-                    <li>Geospatial Modeling & Remote Sensing</li>
+                    <li>B.S. in Computer Science, Amirkabir University of Technology, Tehran, Iran</li>
+                    <li>3D Modeling Student, Inverse School</li>
                 </ul>
+            </section>
+
+            <section class="section">
+                <h2>Academic Research Interests</h2>
+                <div class="two-column">
+                    <ul>
+                        <li>Computer Vision & 3D Reconstruction</li>
+                        <li>Deep Generative Models & Self-Supervised Learning</li>
+                        <li>Multimodal AI (Vision–Language Models)</li>
+                        <li>Geospatial Modeling & Remote Sensing</li>
+                    </ul>
+                    <ul>
+                        <li>Human–Computer Interaction & Interactive Systems</li>
+                        <li>Simulation & Agent-Based Modeling</li>
+                        <li>Natural Language Processing & Retrieval-Augmented Systems</li>
+                        <li>Artificial Intelligence & Machine Learning</li>
+                        <li>AR/VR/MR for Visualization & Design</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-tags">
+                    <span class="skill-tag">Computer Vision</span>
+                    <span class="skill-tag">3D Reconstruction</span>
+                    <span class="skill-tag">Generative AI</span>
+                    <span class="skill-tag">LLMs</span>
+                    <span class="skill-tag">Self-Supervised Learning</span>
+                    <span class="skill-tag">Multimodal AI</span>
+                    <span class="skill-tag">Vision-Language Models</span>
+                    <span class="skill-tag">Geospatial Modeling</span>
+                    <span class="skill-tag">Remote Sensing</span>
+                    <span class="skill-tag">HCI</span>
+                    <span class="skill-tag">Interactive Systems</span>
+                    <span class="skill-tag">Simulation</span>
+                    <span class="skill-tag">Agent-Based Modeling</span>
+                    <span class="skill-tag">NLP</span>
+                    <span class="skill-tag">RAG</span>
+                    <span class="skill-tag">AI</span>
+                    <span class="skill-tag">ML</span>
+                    <span class="skill-tag">AR/VR</span>
+                    <span class="skill-tag">Web Development</span>
+                    <span class="skill-tag">3D Modeling</span>
+                    <span class="skill-tag">Digital Sculpting</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Work Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        Research Assistant (Jul 2025 - Present)
+                        <ul>
+                            <li>Institute for Research in Fundamental Sciences (IPM)</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        Research Assistant @ DS Lab, Sep 2022 – Nov 2024
+                        <ul>
+                            <li>Developed retrieval-augmented NLP systems for large-scale sentiment analysis under the supervision of Dr. Mohammad Akbari.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        Instructional Apprentice and Teaching Assistant @ Amirkabir University of Technology, Spring 2021 - Fall 2023
+                        <ul>
+                            <li>Courses: Artificial Intelligence and Workshop (Fall 2023), Computer Workshop (Fall 2023), Combinatorics and Applications (Spring 2023).</li>
+                            <li>Instructional roles in: Software Engineering (Spring 2021), System Analysis and Design (Fall 2021).</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        Front-End Developer @ Webcore.ir, Jul 2021 – Apr 2022
+                        <ul>
+                            <li>Developed optimized frontend architectures for enterprise applications.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        Freelance Web Developer, Nov 2024 – Current
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Languages</h2>
                 <ul>
-                    <li>Human–Computer Interaction & Interactive Systems</li>
-                    <li>Simulation & Agent-Based Modeling</li>
-                    <li>Natural Language Processing & Retrieval-Augmented Systems</li>
-                    <li>Artificial Intelligence & Machine Learning</li>
-                    <li>AR/VR/MR for Visualization & Design</li>
+                    <li>Persian: Native</li>
+                    <li>English: IELTS 7</li>
+                    <li>Turkish: Native</li>
                 </ul>
-            </div>
-            
-            <div id="skillTagsContainer">
-                <!-- Skill tags will be generated by JavaScript -->
-            </div>
+            </section>
 
-            <h2>Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    Research Assistant (Jul 2025 - Present)
-                    <ul>
-                        <li>Institute for Research in Fundamental Sciences (IPM)</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    Research Assistant @ DS Lab, Sep 2022 – Nov 2024
-                    <ul>
-                        <li>Developed retrieval-augmented NLP systems for large-scale sentiment analysis under the supervision of Dr. Mohammad Akbari.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    Instructional Apprentice and Teaching Assistant @ Amirkabir University of Technology, Spring 2021 - Fall 2023
-                    <ul>
-                        <li>Courses: Artificial Intelligence and Workshop (Fall 2023), Computer Workshop (Fall 2023), Combinatorics and Applications (Spring 2023).</li>
-                        <li>Instructional roles in: Software Engineering (Spring 2021), System Analysis and Design (Fall 2021).</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    Front-End Developer @ Webcore.ir, Jul 2021 – Apr 2022
-                    <ul>
-                        <li>Developed optimized frontend architectures for enterprise applications.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    Freelance Web Developer, Nov 2024 – Current
-                </div>
-            </div>
-
-            <h2>Languages</h2>
-            <ul>
-                <li>Persian: Native</li>
-                <li>English: IELTS 7</li>
-                <li>Turkish: Native</li>
-            </ul>
-
-            <h2>Volunteering and Honors</h2>
-            <ul>
-                <li>Cooperation in ICAISV 2023 Webinar, Amirkabir University of Technology (24–25 May 2023)</li>
-                <li>Scientific Author in Halghe Journal, Amirkabir University of Technology (Oct 2021–Jan 2022)</li>
-                <li>Chair of Git Webinar, Amirkabir University of Technology (Sep 2020–Dec 2020)</li>
-                <li>1st Place, Youth Storytelling Awards (Provincial), 2012</li>
-                <li>2nd Place, Provincial Theater Competition, 2014</li>
-            </ul>
-        </div>
+            <section class="section">
+                <h2>Volunteering and Honors</h2>
+                <ul>
+                    <li>Cooperation in ICAISV 2023 Webinar, Amirkabir University of Technology (24–25 May 2023)</li>
+                    <li>Scientific Author in Halghe Journal, Amirkabir University of Technology (Oct 2021–Jan 2022)</li>
+                    <li>Chair of Git Webinar, Amirkabir University of Technology (Sep 2020–Dec 2020)</li>
+                    <li>1st Place, Youth Storytelling Awards (Provincial), 2012</li>
+                    <li>2nd Place, Provincial Theater Competition, 2014</li>
+                </ul>
+            </section>
+        </main>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
     <script>
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
@@ -573,146 +533,58 @@
             }
         });
 
-        // 3D Tilt Effect for Profile Card
-        const profileCard = document.getElementById('profileCard');
-        document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.clientX) / 25;
-            const y = (window.innerHeight / 2 - e.clientY) / 25;
-            profileCard.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg)`;
-        });
-        
-        document.addEventListener('mouseleave', () => {
-            profileCard.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
-        });
-
-        // Scroll Animation for Sections
+        // Scroll animation for sections
         function animateOnScroll() {
-            const elements = document.querySelectorAll('h2, p, ul, .timeline-item, .network-graph');
+            const sections = document.querySelectorAll('.section');
+            const listItems = document.querySelectorAll('.section li');
+            const skillTags = document.querySelectorAll('.skill-tag');
+            const timelineItems = document.querySelectorAll('.timeline-item');
             
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
+            sections.forEach(section => {
+                const sectionPosition = section.getBoundingClientRect().top;
                 const screenPosition = window.innerHeight / 1.3;
                 
-                if (elementPosition < screenPosition) {
-                    element.classList.add('animate');
+                if (sectionPosition < screenPosition) {
+                    section.classList.add('animate');
                 }
             });
             
-            // Animate list items with a delay
-            const listItems = document.querySelectorAll('li');
             listItems.forEach((item, index) => {
-                const elementPosition = item.getBoundingClientRect().top;
+                const itemPosition = item.getBoundingClientRect().top;
                 const screenPosition = window.innerHeight / 1.3;
                 
-                if (elementPosition < screenPosition) {
+                if (itemPosition < screenPosition) {
                     setTimeout(() => {
                         item.classList.add('animate');
                     }, index * 100);
                 }
             });
             
-            // Animate skill tags with a delay
-            const skillTags = document.querySelectorAll('.skill-tag');
             skillTags.forEach((tag, index) => {
-                const elementPosition = tag.getBoundingClientRect().top;
+                const tagPosition = tag.getBoundingClientRect().top;
                 const screenPosition = window.innerHeight / 1.3;
                 
-                if (elementPosition < screenPosition) {
+                if (tagPosition < screenPosition) {
                     setTimeout(() => {
                         tag.classList.add('animate');
-                    }, index * 100);
+                    }, index * 50);
+                }
+            });
+            
+            timelineItems.forEach((item, index) => {
+                const itemPosition = item.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (itemPosition < screenPosition) {
+                    setTimeout(() => {
+                        item.classList.add('animate');
+                    }, index * 200);
                 }
             });
         }
         
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
-
-        // Create Research Network Graph
-        function createResearchNetwork() {
-            const networkContainer = document.getElementById('researchNetwork');
-            const researchTopics = [
-                { name: "Computer Vision", x: 50, y: 50, connections: [1, 2, 3] },
-                { name: "3D Reconstruction", x: 20, y: 80, connections: [0, 2] },
-                { name: "Generative AI", x: 80, y: 80, connections: [0, 1, 3, 4] },
-                { name: "Multimodal AI", x: 50, y: 20, connections: [0, 2, 4] },
-                { name: "XR/VR", x: 80, y: 20, connections: [2, 3, 5] },
-                { name: "Geospatial", x: 20, y: 20, connections: [0, 3] }
-            ];
-            
-            // Create links first so they appear behind nodes
-            researchTopics.forEach(topic => {
-                topic.connections.forEach(connIndex => {
-                    if (connIndex > researchTopics.indexOf(topic)) { // Avoid duplicate links
-                        const connTopic = researchTopics[connIndex];
-                        const link = document.createElement('div');
-                        link.className = 'link';
-                        
-                        // Calculate link position and length
-                        const length = Math.sqrt(
-                            Math.pow(connTopic.x - topic.x, 2) + 
-                            Math.pow(connTopic.y - topic.y, 2)
-                        );
-                        
-                        const angle = Math.atan2(
-                            connTopic.y - topic.y,
-                            connTopic.x - topic.x
-                        ) * 180 / Math.PI;
-                        
-                        link.style.width = `${length}%`;
-                        link.style.left = `${topic.x}%`;
-                        link.style.top = `${topic.y}%`;
-                        link.style.transform = `rotate(${angle}deg)`;
-                        
-                        networkContainer.appendChild(link);
-                    }
-                });
-            });
-            
-            // Create nodes
-            researchTopics.forEach(topic => {
-                const node = document.createElement('div');
-                node.className = 'node';
-                node.textContent = topic.name;
-                node.style.left = `${topic.x}%`;
-                node.style.top = `${topic.y}%`;
-                
-                // Add slight random offset for visual interest
-                const randomX = (Math.random() - 0.5) * 10;
-                const randomY = (Math.random() - 0.5) * 10;
-                
-                node.style.transform = `translate(-50%, -50%) translate(${randomX}px, ${randomY}px)`;
-                
-                networkContainer.appendChild(node);
-            });
-        }
-
-        // Create Skill Tags
-        function createSkillTags() {
-            const skills = [
-                "Computer Vision", "3D Reconstruction", "Generative AI", "LLMs", 
-                "Self-Supervised Learning", "Multimodal AI", "Vision-Language Models",
-                "Geospatial Modeling", "Remote Sensing", "HCI", "Interactive Systems",
-                "Simulation", "Agent-Based Modeling", "NLP", "RAG", "AI", "ML",
-                "AR/VR", "Web Development", "3D Modeling", "Digital Sculpting"
-            ];
-            
-            const container = document.getElementById('skillTagsContainer');
-            
-            skills.forEach(skill => {
-                const tag = document.createElement('span');
-                tag.className = 'skill-tag';
-                tag.textContent = skill;
-                container.appendChild(tag);
-            });
-        }
-
-        // Initialize everything when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            createResearchNetwork();
-            createSkillTags();
-            animateOnScroll();
-        });
     </script>
 </body>
 </html>

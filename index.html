@@ -101,12 +101,6 @@
             display: block;
             border: 3px solid var(--accent-color);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.5s ease;
-        }
-        
-        .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .sidebar h2 {
@@ -121,6 +115,8 @@
             color: var(--accent-color);
             font-weight: 500;
             margin-bottom: 25px;
+            font-size: 1.1em;
+            line-height: 1.5;
         }
 
         .contact-info {
@@ -133,11 +129,6 @@
             margin: 15px 0;
             text-align: left;
             color: var(--text-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .contact-info p:hover {
-            transform: translateX(5px);
         }
 
         .contact-info i {
@@ -171,26 +162,6 @@
             font-size: 2.5em;
             margin-bottom: 20px;
             color: var(--heading-color);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .main-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent-color);
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.5s ease;
-        }
-        
-        .main-title:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
         }
 
         .intro-text {
@@ -201,14 +172,6 @@
 
         .section {
             margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .section.animate {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .section h2 {
@@ -239,14 +202,6 @@
             margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-        .section li.animate {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         .section li::before {
@@ -263,18 +218,16 @@
             gap: 30px;
         }
 
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
         .timeline-item {
             position: relative;
             padding-left: 30px;
             margin-bottom: 30px;
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .timeline-item.animate {
-            opacity: 1;
-            transform: translateX(0);
         }
         
         .timeline-item::before {
@@ -315,20 +268,22 @@
             border-radius: 20px;
             font-size: 0.9em;
             transition: all 0.3s ease;
-            opacity: 0;
-            transform: scale(0.9);
-        }
-        
-        .skill-tag.animate {
-            opacity: 1;
-            transform: scale(1);
         }
         
         .skill-tag:hover {
             background: var(--accent-color);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .course-category {
+            margin-bottom: 25px;
+        }
+
+        .course-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.2em;
         }
 
         /* Responsive Design */
@@ -342,7 +297,7 @@
                 margin-bottom: 30px;
             }
             
-            .two-column {
+            .two-column, .three-column {
                 grid-template-columns: 1fr;
             }
         }
@@ -378,7 +333,7 @@
         <aside class="sidebar">
             <img src="zahra.jpg" alt="Zahra Gharehmahmoodlee" class="profile-img">
             <h2>Zahra Gharehmahmoodlee</h2>
-            <p>Full-Stack Developer | Digital Sculptor | AI Researcher</p>
+            <p>AI Research Scientist<br>Specializing in LLMs & Generative AI<br>Human-Centered Computing</p>
             
             <div class="contact-info">
                 <p><i class="fas fa-map-marker-alt"></i> Sari, Iran</p>
@@ -392,90 +347,246 @@
 
         <main class="content">
             <section class="section">
-                <p class="intro-text">Curious and driven Computer Science graduate exploring the frontiers of AI, Computer Vision, and NLP, with a focus on large language models, generative AI, and self-supervised methods. I'm currently diving into 3D animation at Inverse School while coding as a web developer, thriving at the intersection of technology and storytelling. I love games with rich, open worlds like Skyrim and Fallout 4, and I'm passionate about 3D design, immersive narratives, geospatial computer vision, 3D reconstruction, and XR/VR. I'm eager to bring my mix of creativity and technical skills to research in generative models, multimodal AI, and immersive technologies.</p>
+                <p class="intro-text">Computer Science graduate with a strong foundation in artificial intelligence, specializing in large language models, generative AI, and natural language processing. With hands-on experience developing adaptive retrieval-augmented generation (RAG) pipelines and fine-tuning transformer-based models, I focus on advancing AI technologies to create more efficient and scalable systems. My research interests span machine learning, neurotechnology, and human-centered AI applications, with a particular emphasis on developing innovative solutions for real-world challenges. I'm passionate about exploring the intersection of AI, cognitive science, and interactive technologies to push the boundaries of what's possible in human-computer interaction.</p>
             </section>
 
             <section class="section">
                 <h2>Education</h2>
-                <ul>
-                    <li>B.S. in Computer Science, Amirkabir University of Technology, Tehran, Iran</li>
-                    <li>3D Modeling Student, Inverse School</li>
-                </ul>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>Amirkabir University of Technology</strong><br>
+                        B.Sc., Computer Science, GPA: 3.2/4.0<br>
+                        September 2018 - August 2023<br>
+                        <em>Thesis: Adaptive Retrieval-Augmented Summarization of User Opinions with Efficient LLMs (Grade: 19.25/20)</em>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>Inverse School</strong><br>
+                        3D Modeling Student<br>
+                        Current
+                    </div>
+                </div>
             </section>
 
             <section class="section">
-                <h2>Academic Research Interests</h2>
+                <h2>Research Interests</h2>
                 <div class="two-column">
-                    <ul>
-                        <li>Computer Vision & 3D Reconstruction</li>
-                        <li>Deep Generative Models & Self-Supervised Learning</li>
-                        <li>Multimodal AI (Vision–Language Models)</li>
-                        <li>Geospatial Modeling & Remote Sensing</li>
-                    </ul>
-                    <ul>
-                        <li>Human–Computer Interaction & Interactive Systems</li>
-                        <li>Simulation & Agent-Based Modeling</li>
-                        <li>Natural Language Processing & Retrieval-Augmented Systems</li>
-                        <li>Artificial Intelligence & Machine Learning</li>
-                        <li>AR/VR/MR for Visualization & Design</li>
-                    </ul>
+                    <div>
+                        <h3>Machine Learning</h3>
+                        <ul>
+                            <li>Deep & Representation Learning</li>
+                            <li>Reinforcement Learning</li>
+                            <li>NLP & Retrieval Systems</li>
+                        </ul>
+                        
+                        <h3>Generative AI</h3>
+                        <ul>
+                            <li>Multitude & Foundation Models</li>
+                            <li>Large Language Models</li>
+                            <li>Diffusion & Self-Supervised Learning</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Human Centered AI</h3>
+                        <ul>
+                            <li>Neurotechnology & Cognitive Modeling</li>
+                            <li>XR & Wearable Systems for Well-Being</li>
+                            <li>Affective Computing</li>
+                        </ul>
+                        
+                        <h3>Computer Vision</h3>
+                        <ul>
+                            <li>3D Reconstruction</li>
+                            <li>Geospatial Modeling</li>
+                            <li>Multimodal AI</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="skill-tags">
-                    <span class="skill-tag">Computer Vision</span>
-                    <span class="skill-tag">3D Reconstruction</span>
-                    <span class="skill-tag">Generative AI</span>
-                    <span class="skill-tag">LLMs</span>
-                    <span class="skill-tag">Self-Supervised Learning</span>
-                    <span class="skill-tag">Multimodal AI</span>
-                    <span class="skill-tag">Vision-Language Models</span>
-                    <span class="skill-tag">Geospatial Modeling</span>
-                    <span class="skill-tag">Remote Sensing</span>
-                    <span class="skill-tag">HCI</span>
-                    <span class="skill-tag">Interactive Systems</span>
-                    <span class="skill-tag">Simulation</span>
-                    <span class="skill-tag">Agent-Based Modeling</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Deep Learning</span>
                     <span class="skill-tag">NLP</span>
-                    <span class="skill-tag">RAG</span>
-                    <span class="skill-tag">AI</span>
-                    <span class="skill-tag">ML</span>
-                    <span class="skill-tag">AR/VR</span>
-                    <span class="skill-tag">Web Development</span>
-                    <span class="skill-tag">3D Modeling</span>
-                    <span class="skill-tag">Digital Sculpting</span>
+                    <span class="skill-tag">Large Language Models</span>
+                    <span class="skill-tag">Generative AI</span>
+                    <span class="skill-tag">Computer Vision</span>
+                    <span class="skill-tag">Retrieval Systems</span>
+                    <span class="skill-tag">Neurotechnology</span>
+                    <span class="skill-tag">Affective Computing</span>
+                    <span class="skill-tag">XR/VR</span>
+                    <span class="skill-tag">Self-Supervised Learning</span>
+                    <span class="skill-tag">3D Reconstruction</span>
                 </div>
             </section>
 
             <section class="section">
-                <h2>Work Experience</h2>
+                <h2>Related Courses & Certifications</h2>
+                <div class="three-column">
+                    <div class="course-category">
+                        <h3>AI & Machine Learning</h3>
+                        <ul>
+                            <li>Introduction to Artificial Intelligence (IBM)</li>
+                            <li>Introduction to Deep Learning and Neural Networks with Keras (IBM)</li>
+                            <li>Deep Learning using TensorFlow (IBM)</li>
+                            <li>Deep Neural Networks with PyTorch (IBM)</li>
+                            <li>Open Source Models with Hugging Face</li>
+                            <li>Introduction to Large Language Models (Google)</li>
+                            <li>Finetuning Large Language Models (DeepMind)</li>
+                            <li>Transformer Models and BERT Model (Google)</li>
+                            <li>Introduction to Generative AI (Google)</li>
+                            <li>Prompt Engineering with Llama 2 and 3 (Meta)</li>
+                            <li>ChatGPT Prompt Engineering (OpenAI)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-category">
+                        <h3>Healthcare & Neuroscience</h3>
+                        <ul>
+                            <li>Fundamentals of Machine Learning for Healthcare (Stanford University)</li>
+                            <li>Fundamental Neuroscience for Neuroimaging (Johns Hopkins University)</li>
+                            <li>Computational Neuroscience: Neuronal Dynamics of Cognition (EPFL)</li>
+                        </ul>
+                        
+                        <h3>Programming & Data Science</h3>
+                        <ul>
+                            <li>Programming in Python (Meta)</li>
+                            <li>Digital Signal Processing 1: Basic Concepts and Algorithms (EPFL)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-category">
+                        <h3>University Courses</h3>
+                        <ul>
+                            <li>Artificial Intelligence</li>
+                            <li>Machine Learning</li>
+                            <li>Natural Language Processing</li>
+                            <li>Computer Vision</li>
+                            <li>Information Retrieval</li>
+                            <li>Data Mining</li>
+                            <li>Neural Networks</li>
+                            <li>Reinforcement Learning</li>
+                            <li>Software Engineering</li>
+                            <li>Algorithm Design</li>
+                            <li>Database Systems</li>
+                            <li>Computer Networks</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Experience</h2>
                 <div class="timeline">
                     <div class="timeline-item">
-                        Research Assistant (Jul 2025 - Present)
+                        <strong>Researcher</strong> — Institute for Research in Fundamental Sciences (IPM)<br>
+                        July 2025 – September 2025<br>
                         <ul>
-                            <li>Institute for Research in Fundamental Sciences (IPM)</li>
+                            <li>Developed brain-inspired vision models for object recognition using transfer learning & neural activation analysis</li>
+                            <li>Conducted comparative study of recurrent & CNN architecture to investigate biologically motivated mechanisms in visual perception</li>
                         </ul>
                     </div>
                     <div class="timeline-item">
-                        Research Assistant @ DS Lab, Sep 2022 – Nov 2024
+                        <strong>Researcher</strong> — Data Science Innovation Center Lab (DS Lab)<br>
+                        April 2022 – November 2024<br>
                         <ul>
-                            <li>Developed retrieval-augmented NLP systems for large-scale sentiment analysis under the supervision of Dr. Mohammad Akbari.</li>
+                            <li>Designed and implemented adaptive retrieval-augmented generation (RAG) pipelines for multilingual opinion summarization</li>
+                            <li>Fine-tuned transformer-based models (T5, BERT) to improve relevance, scalability, and cross-domain robustness in text summarization</li>
+                            <li>Supervisor: Prof. Mohammad Akbari</li>
                         </ul>
                     </div>
                     <div class="timeline-item">
-                        Instructional Apprentice and Teaching Assistant @ Amirkabir University of Technology, Spring 2021 - Fall 2023
+                        <strong>Teaching Assistant</strong> — Amirkabir University of Technology<br>
+                        September 2023 – January 2024<br>
                         <ul>
-                            <li>Courses: Artificial Intelligence and Workshop (Fall 2023), Computer Workshop (Fall 2023), Combinatorics and Applications (Spring 2023).</li>
-                            <li>Instructional roles in: Software Engineering (Spring 2021), System Analysis and Design (Fall 2021).</li>
+                            <li>Artificial Intelligence and Workshop (Supervisor: Prof. Mohammad Akbari)</li>
+                            <li>Computer Workshop (Supervisor: Prof. Behnam Yousefimehr)</li>
+                            <li>Combinatorics and Applications (Supervisor: Prof. Alireza Mofidi)</li>
                         </ul>
                     </div>
                     <div class="timeline-item">
-                        Front-End Developer @ Webcore.ir, Jul 2021 – Apr 2022
+                        <strong>Frontend Engineer</strong> — Webcore<br>
+                        July 2021 – April 2022<br>
                         <ul>
-                            <li>Developed optimized frontend architectures for enterprise applications.</li>
+                            <li>Developed responsive, accessible web interfaces using React.js, TypeScript, and Vue.js</li>
+                            <li>Enhanced usability and user experience through optimized frontend architectures</li>
                         </ul>
                     </div>
                     <div class="timeline-item">
-                        Freelance Web Developer, Nov 2024 – Current
+                        <strong>Teaching Assistant</strong> — Islamic Azad University<br>
+                        February 2021 – January 2022<br>
+                        <ul>
+                            <li>Software Engineering</li>
+                            <li>System Analysis and Design</li>
+                            <li>Supervisor: Prof. Homayoun Motameni</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Technical Skills</h2>
+                <div class="two-column">
+                    <div>
+                        <h3>Languages</h3>
+                        <ul>
+                            <li>Python, C/C++, Java, JavaScript, MATLAB, Bash, SQL/TSQL</li>
+                        </ul>
+                        
+                        <h3>Libraries & Frameworks</h3>
+                        <ul>
+                            <li>PyTorch, TensorFlow, Keras, Hugging Face Transformers, Scikit-learn</li>
+                            <li>OpenCV, NumPy, Pandas, LangChain, Matplotlib, Seaborn, SciPy</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Web Technologies</h3>
+                        <ul>
+                            <li>HTML, CSS, JavaScript, TypeScript, Bootstrap, jQuery</li>
+                            <li>React.js, Vue.js, Flask, Streamlit</li>
+                        </ul>
+                        
+                        <h3>Tools & Platforms</h3>
+                        <ul>
+                            <li>JupyterLab, Google Colab, Anaconda, GitHub, Linux, Docker</li>
+                            <li>Minikube, Apache Hadoop, SQL Server, MySQL, PostgreSQL</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Selected Projects</h2>
+                <div class="two-column">
+                    <div>
+                        <h3>AI & NLP</h3>
+                        <ul>
+                            <li><strong>Adaptive RAG for Opinion Summarization:</strong> Thesis project developing efficient LLM-based summarization systems</li>
+                            <li><strong>ClinicalClusterAI:</strong> Interpretable patient clustering pipeline for clinical outcome prediction</li>
+                            <li><strong>Document Analysis with LLMs:</strong> Automated PDF parsing, summarization, and question generation</li>
+                            <li><strong>Next Word Prediction:</strong> Fine-tuned LSTM-based language models for text sequence prediction</li>
+                        </ul>
+                        
+                        <h3>Computer Vision</h3>
+                        <ul>
+                            <li><strong>Real-Time Virtual Face Mask Try-On:</strong> AR system using OpenCV and TensorFlow for face tracking</li>
+                            <li><strong>Brain Tumor Detection:</strong> Deep CNNs for classification with Grad-CAM interpretability</li>
+                            <li><strong>VisionX:</strong> Modular, interpretable CNN with visualization tools</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Human-Centered AI</h3>
+                        <ul>
+                            <li><strong>Journal Talk:</strong> Reflective AI journal assistant for mental wellness</li>
+                            <li><strong>Counseler Chatbot:</strong> Mental health chatbot with predefined conversational intents</li>
+                            <li><strong>The Empathy Mirror:</strong> AI-driven affect recognition using facial and speech cues</li>
+                            <li><strong>TikTok-AI Voice Selector:</strong> Multimodal AI for expressive voiceover recommendations</li>
+                        </ul>
+                        
+                        <h3>Systems & Applications</h3>
+                        <ul>
+                            <li><strong>Persian Search Engine:</strong> Information retrieval system for Persian content</li>
+                            <li><strong>Coin Price Monitoring:</strong> Cryptocurrency app with Docker and Kubernetes deployment</li>
+                            <li><strong>Twitter Clone:</strong> JavaFX-based social platform with Light/Dark Mode GUIs</li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -483,20 +594,19 @@
             <section class="section">
                 <h2>Languages</h2>
                 <ul>
-                    <li>Persian: Native</li>
-                    <li>English: IELTS 7</li>
-                    <li>Turkish: Native</li>
+                    <li><strong>Persian:</strong> Native</li>
+                    <li><strong>English:</strong> IELTS Band 7.0</li>
+                    <li><strong>Turkish:</strong> Native</li>
+                    <li><strong>French:</strong> A1</li>
                 </ul>
             </section>
 
             <section class="section">
-                <h2>Volunteering and Honors</h2>
+                <h2>Extracurricular Activities</h2>
                 <ul>
-                    <li>Cooperation in ICAISV 2023 Webinar, Amirkabir University of Technology (24–25 May 2023)</li>
-                    <li>Scientific Author in Halghe Journal, Amirkabir University of Technology (Oct 2021–Jan 2022)</li>
-                    <li>Chair of Git Webinar, Amirkabir University of Technology (Sep 2020–Dec 2020)</li>
-                    <li>1st Place, Youth Storytelling Awards (Provincial), 2012</li>
-                    <li>2nd Place, Provincial Theater Competition, 2014</li>
+                    <li>Cooperator in ICAISV Webinar — Amirkabir University of Technology (May 2023)</li>
+                    <li>Member of Student Scientific Chapter — Amirkabir University of Technology (2021 – 2022)</li>
+                    <li>Volunteer Columnist, Halgheh Magazine — Amirkabir University of Technology (2021 - 2022)</li>
                 </ul>
             </section>
         </main>
@@ -532,59 +642,6 @@
                 localStorage.setItem('theme', 'light');
             }
         });
-
-        // Scroll animation for sections
-        function animateOnScroll() {
-            const sections = document.querySelectorAll('.section');
-            const listItems = document.querySelectorAll('.section li');
-            const skillTags = document.querySelectorAll('.skill-tag');
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            
-            sections.forEach(section => {
-                const sectionPosition = section.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (sectionPosition < screenPosition) {
-                    section.classList.add('animate');
-                }
-            });
-            
-            listItems.forEach((item, index) => {
-                const itemPosition = item.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (itemPosition < screenPosition) {
-                    setTimeout(() => {
-                        item.classList.add('animate');
-                    }, index * 100);
-                }
-            });
-            
-            skillTags.forEach((tag, index) => {
-                const tagPosition = tag.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (tagPosition < screenPosition) {
-                    setTimeout(() => {
-                        tag.classList.add('animate');
-                    }, index * 50);
-                }
-            });
-            
-            timelineItems.forEach((item, index) => {
-                const itemPosition = item.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (itemPosition < screenPosition) {
-                    setTimeout(() => {
-                        item.classList.add('animate');
-                    }, index * 200);
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>

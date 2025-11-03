@@ -286,6 +286,82 @@
             font-size: 1.2em;
         }
 
+        .featured-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: var(--sidebar-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .project-card p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tech-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .skill-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Portfolio Links in Header */
+        .portfolio-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+
+        .portfolio-links a {
+            color: var(--accent-color);
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-links a:hover {
+            transform: translateY(-2px);
+        }
+
         /* Responsive Design */
         @media (max-width: 900px) {
             .container {
@@ -298,6 +374,14 @@
             }
             
             .two-column, .three-column {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-projects {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-matrix {
                 grid-template-columns: 1fr;
             }
         }
@@ -333,21 +417,97 @@
         <aside class="sidebar">
             <img src="zahra.jpg" alt="Zahra Gharehmahmoodlee" class="profile-img">
             <h2>Zahra Gharehmahmoodlee</h2>
-            <p>AI Research Scientist<br>Specializing in LLMs & Generative AI<br>Human-Centered Computing</p>
+            <p>AI Research Scientist<br>Specializing in XR/VR & Computer Vision<br>Human-Centered Computing</p>
+            
+            <div class="portfolio-links">
+                <a href="https://github.com/zahramh99" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.artstation.com/lunebelue" target="_blank" title="ArtStation">
+                    <i class="fas fa-palette"></i>
+                </a>
+            </div>
             
             <div class="contact-info">
                 <p><i class="fas fa-map-marker-alt"></i> Sari, Iran</p>
                 <p><i class="fas fa-university"></i> <a href="https://aut.ac.ir" target="_blank">Amirkabir University of Technology</a></p>
                 <p><i class="fas fa-envelope"></i> <a href="mailto:zahramahmoodlee2012@gmail.com">Email</a></p>
-                <p><i class="fab fa-github"></i> <a href="https://github.com/zahramh99" target="_blank">GitHub</a></p>
-                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank">LinkedIn</a></p>
-                <p><i class="fas fa-palette"></i> <a href="https://www.artstation.com/lunebelue" target="_blank">ArtStation</a></p>
             </div>
         </aside>
 
         <main class="content">
             <section class="section">
-                <p class="intro-text">Computer Science graduate with a strong foundation in artificial intelligence, specializing in large language models, generative AI, and natural language processing. With hands-on experience developing adaptive retrieval-augmented generation (RAG) pipelines and fine-tuning transformer-based models, I focus on advancing AI technologies to create more efficient and scalable systems. My research interests span machine learning, neurotechnology, and human-centered AI applications, with a particular emphasis on developing innovative solutions for real-world challenges. I'm passionate about exploring the intersection of AI, cognitive science, and interactive technologies to push the boundaries of what's possible in human-computer interaction.</p>
+                <p class="intro-text">Computer Science graduate with a strong foundation in artificial intelligence, specializing in large language models, generative AI, and natural language processing. I am particularly interested in XR, 3D reconstruction, and neural rendering, and how immersive technologies can be used for human-centered applications. With hands-on experience developing adaptive retrieval-augmented generation (RAG) pipelines and fine-tuning transformer-based models, I focus on advancing AI technologies to create more efficient and scalable systems. My research interests span machine learning, neurotechnology, and human-centered AI applications, with a particular emphasis on developing innovative solutions for real-world challenges. I'm passionate about exploring the intersection of AI, cognitive science, and interactive technologies to push the boundaries of what's possible in human-computer interaction.</p>
+            </section>
+
+            <!-- NEW: Featured Projects Section -->
+            <section class="section">
+                <h2>Featured Projects</h2>
+                <div class="featured-projects">
+                    <div class="project-card">
+                        <h3>Real-Time AR Face Mask Try-On</h3>
+                        <p>Augmented reality system using OpenCV and TensorFlow for real-time face tracking and realistic virtual mask overlay. Demonstrates expertise in computer vision and real-time rendering.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AR</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>GestureShape-Matcher</h3>
+                        <p>Interactive computer-vision game recognizing hand gestures to match geometric shapes, supporting gesture-based learning and human-computer interaction.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Computer Vision</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Gesture Recognition</span>
+                            <span class="tech-tag">HCI</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>VisionX: Explainable CNNs</h3>
+                        <p>Modular, interpretable CNN with visualization tools for explainability and model behavior analysis in medical imaging applications.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">CNN</span>
+                            <span class="tech-tag">Explainable AI</span>
+                            <span class="tech-tag">Medical Imaging</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3>Brain Tumor Detection</h3>
+                        <p>Applied deep CNNs for early-stage brain tumor classification and visualization through Grad-CAM for interpretability in clinical settings.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Deep Learning</span>
+                            <span class="tech-tag">Grad-CAM</span>
+                            <span class="tech-tag">Medical AI</span>
+                            <span class="tech-tag">TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NEW: Research Output Section -->
+            <section class="section">
+                <h2>Research Output</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>Thesis: Adaptive Retrieval-Augmented Summarization of User Opinions with Efficient LLMs</strong><br>
+                        Amirkabir University of Technology | Grade: 19.25/20<br>
+                        <em>Developed efficient LLM-based summarization systems with adaptive retrieval mechanisms</em>
+                    </div>
+                    <div class="timeline-item">
+                        <strong>GitHub Research Repository</strong><br>
+                        <a href="https://github.com/zahramh99" target="_blank">github.com/zahramh99</a><br>
+                        <em>Open-source implementations of computer vision, XR, and AI projects</em>
+                    </div>
+                </div>
             </section>
 
             <section class="section">
@@ -401,74 +561,64 @@
                         </ul>
                     </div>
                 </div>
-                
-                <div class="skill-tags">
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Deep Learning</span>
-                    <span class="skill-tag">NLP</span>
-                    <span class="skill-tag">Large Language Models</span>
-                    <span class="skill-tag">Generative AI</span>
-                    <span class="skill-tag">Computer Vision</span>
-                    <span class="skill-tag">Retrieval Systems</span>
-                    <span class="skill-tag">Neurotechnology</span>
-                    <span class="skill-tag">Affective Computing</span>
-                    <span class="skill-tag">XR/VR</span>
-                    <span class="skill-tag">Self-Supervised Learning</span>
-                    <span class="skill-tag">3D Reconstruction</span>
-                </div>
             </section>
 
+            <!-- UPDATED: Enhanced Technical Skills Section -->
             <section class="section">
-                <h2>Related Courses & Certifications</h2>
-                <div class="three-column">
-                    <div class="course-category">
+                <h2>Technical Skills</h2>
+                <div class="skills-matrix">
+                    <div class="skill-category">
+                        <h3>Core Programming</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C/C++</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">MATLAB</span>
+                            <span class="skill-tag">Bash</span>
+                            <span class="skill-tag">SQL/TSQL</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
                         <h3>AI & Machine Learning</h3>
-                        <ul>
-                            <li>Introduction to Artificial Intelligence (IBM)</li>
-                            <li>Introduction to Deep Learning and Neural Networks with Keras (IBM)</li>
-                            <li>Deep Learning using TensorFlow (IBM)</li>
-                            <li>Deep Neural Networks with PyTorch (IBM)</li>
-                            <li>Open Source Models with Hugging Face</li>
-                            <li>Introduction to Large Language Models (Google)</li>
-                            <li>Finetuning Large Language Models (DeepMind)</li>
-                            <li>Transformer Models and BERT Model (Google)</li>
-                            <li>Introduction to Generative AI (Google)</li>
-                            <li>Prompt Engineering with Llama 2 and 3 (Meta)</li>
-                            <li>ChatGPT Prompt Engineering (OpenAI)</li>
-                        </ul>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Keras</span>
+                            <span class="skill-tag">Hugging Face</span>
+                            <span class="skill-tag">Scikit-learn</span>
+                            <span class="skill-tag">LangChain</span>
+                        </div>
                     </div>
                     
-                    <div class="course-category">
-                        <h3>Healthcare & Neuroscience</h3>
-                        <ul>
-                            <li>Fundamentals of Machine Learning for Healthcare (Stanford University)</li>
-                            <li>Fundamental Neuroscience for Neuroimaging (Johns Hopkins University)</li>
-                            <li>Computational Neuroscience: Neuronal Dynamics of Cognition (EPFL)</li>
-                        </ul>
-                        
-                        <h3>Programming & Data Science</h3>
-                        <ul>
-                            <li>Programming in Python (Meta)</li>
-                            <li>Digital Signal Processing 1: Basic Concepts and Algorithms (EPFL)</li>
-                        </ul>
+                    <div class="skill-category">
+                        <h3>Computer Vision & XR/3D</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">OpenCV</span>
+                            <span class="skill-tag">Unity3D</span>
+                            <span class="skill-tag">Blender</span>
+                            <span class="skill-tag">OpenGL/WebGL</span>
+                            <span class="skill-tag">SLAM</span>
+                            <span class="skill-tag">Structure-from-Motion</span>
+                            <span class="skill-tag">Point Cloud Processing</span>
+                            <span class="skill-tag">ARKit/ARCore</span>
+                            <span class="skill-tag">Photogrammetry</span>
+                            <span class="skill-tag">3D Reconstruction</span>
+                        </div>
                     </div>
                     
-                    <div class="course-category">
-                        <h3>University Courses</h3>
-                        <ul>
-                            <li>Artificial Intelligence</li>
-                            <li>Machine Learning</li>
-                            <li>Natural Language Processing</li>
-                            <li>Computer Vision</li>
-                            <li>Information Retrieval</li>
-                            <li>Data Mining</li>
-                            <li>Neural Networks</li>
-                            <li>Reinforcement Learning</li>
-                            <li>Software Engineering</li>
-                            <li>Algorithm Design</li>
-                            <li>Database Systems</li>
-                            <li>Computer Networks</li>
-                        </ul>
+                    <div class="skill-category">
+                        <h3>Tools & Platforms</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Jupyter</span>
+                            <span class="skill-tag">Google Colab</span>
+                            <span class="skill-tag">CUDA</span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -478,7 +628,7 @@
                 <div class="timeline">
                     <div class="timeline-item">
                         <strong>Researcher</strong> — Institute for Research in Fundamental Sciences (IPM)<br>
-                        July 2025 – September 2025<br>
+                        July 2024 – September 2024<br>
                         <ul>
                             <li>Developed brain-inspired vision models for object recognition using transfer learning & neural activation analysis</li>
                             <li>Conducted comparative study of recurrent & CNN architecture to investigate biologically motivated mechanisms in visual perception</li>
@@ -502,59 +652,12 @@
                             <li>Combinatorics and Applications (Supervisor: Prof. Alireza Mofidi)</li>
                         </ul>
                     </div>
-                    <div class="timeline-item">
-                        <strong>Frontend Engineer</strong> — Webcore<br>
-                        July 2021 – April 2022<br>
-                        <ul>
-                            <li>Developed responsive, accessible web interfaces using React.js, TypeScript, and Vue.js</li>
-                            <li>Enhanced usability and user experience through optimized frontend architectures</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>Teaching Assistant</strong> — Islamic Azad University<br>
-                        February 2021 – January 2022<br>
-                        <ul>
-                            <li>Software Engineering</li>
-                            <li>System Analysis and Design</li>
-                            <li>Supervisor: Prof. Homayoun Motameni</li>
-                        </ul>
-                    </div>
                 </div>
             </section>
 
+            <!-- UPDATED: Additional Projects Section -->
             <section class="section">
-                <h2>Technical Skills</h2>
-                <div class="two-column">
-                    <div>
-                        <h3>Languages</h3>
-                        <ul>
-                            <li>Python, C/C++, Java, JavaScript, MATLAB, Bash, SQL/TSQL</li>
-                        </ul>
-                        
-                        <h3>Libraries & Frameworks</h3>
-                        <ul>
-                            <li>PyTorch, TensorFlow, Keras, Hugging Face Transformers, Scikit-learn</li>
-                            <li>OpenCV, NumPy, Pandas, LangChain, Matplotlib, Seaborn, SciPy</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>Web Technologies</h3>
-                        <ul>
-                            <li>HTML, CSS, JavaScript, TypeScript, Bootstrap, jQuery</li>
-                            <li>React.js, Vue.js, Flask, Streamlit</li>
-                        </ul>
-                        
-                        <h3>Tools & Platforms</h3>
-                        <ul>
-                            <li>JupyterLab, Google Colab, Anaconda, GitHub, Linux, Docker</li>
-                            <li>Minikube, Apache Hadoop, SQL Server, MySQL, PostgreSQL</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2>Selected Projects</h2>
+                <h2>Additional Projects</h2>
                 <div class="two-column">
                     <div>
                         <h3>AI & NLP</h3>
@@ -562,30 +665,63 @@
                             <li><strong>Adaptive RAG for Opinion Summarization:</strong> Thesis project developing efficient LLM-based summarization systems</li>
                             <li><strong>ClinicalClusterAI:</strong> Interpretable patient clustering pipeline for clinical outcome prediction</li>
                             <li><strong>Document Analysis with LLMs:</strong> Automated PDF parsing, summarization, and question generation</li>
-                            <li><strong>Next Word Prediction:</strong> Fine-tuned LSTM-based language models for text sequence prediction</li>
                         </ul>
                         
-                        <h3>Computer Vision</h3>
-                        <ul>
-                            <li><strong>Real-Time Virtual Face Mask Try-On:</strong> AR system using OpenCV and TensorFlow for face tracking</li>
-                            <li><strong>Brain Tumor Detection:</strong> Deep CNNs for classification with Grad-CAM interpretability</li>
-                            <li><strong>VisionX:</strong> Modular, interpretable CNN with visualization tools</li>
-                        </ul>
-                    </div>
-                    <div>
                         <h3>Human-Centered AI</h3>
                         <ul>
                             <li><strong>Journal Talk:</strong> Reflective AI journal assistant for mental wellness</li>
                             <li><strong>Counseler Chatbot:</strong> Mental health chatbot with predefined conversational intents</li>
                             <li><strong>The Empathy Mirror:</strong> AI-driven affect recognition using facial and speech cues</li>
-                            <li><strong>TikTok-AI Voice Selector:</strong> Multimodal AI for expressive voiceover recommendations</li>
                         </ul>
-                        
+                    </div>
+                    <div>
                         <h3>Systems & Applications</h3>
                         <ul>
                             <li><strong>Persian Search Engine:</strong> Information retrieval system for Persian content</li>
                             <li><strong>Coin Price Monitoring:</strong> Cryptocurrency app with Docker and Kubernetes deployment</li>
                             <li><strong>Twitter Clone:</strong> JavaFX-based social platform with Light/Dark Mode GUIs</li>
+                        </ul>
+                        
+                        <h3>Computer Vision</h3>
+                        <ul>
+                            <li><strong>TikTok-AI Voice Selector:</strong> Multimodal AI for expressive voiceover recommendations</li>
+                            <li><strong>Next Word Prediction:</strong> Fine-tuned LSTM-based language models for text sequence prediction</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Related Courses & Certifications</h2>
+                <div class="three-column">
+                    <div class="course-category">
+                        <h3>AI & Machine Learning</h3>
+                        <ul>
+                            <li>Introduction to Artificial Intelligence (IBM)</li>
+                            <li>Introduction to Deep Learning and Neural Networks with Keras (IBM)</li>
+                            <li>Deep Learning using TensorFlow (IBM)</li>
+                            <li>Deep Neural Networks with PyTorch (IBM)</li>
+                            <li>Open Source Models with Hugging Face</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-category">
+                        <h3>Healthcare & Neuroscience</h3>
+                        <ul>
+                            <li>Fundamentals of Machine Learning for Healthcare (Stanford University)</li>
+                            <li>Fundamental Neuroscience for Neuroimaging (Johns Hopkins University)</li>
+                            <li>Computational Neuroscience: Neuronal Dynamics of Cognition (EPFL)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-category">
+                        <h3>University Courses</h3>
+                        <ul>
+                            <li>Artificial Intelligence</li>
+                            <li>Machine Learning</li>
+                            <li>Natural Language Processing</li>
+                            <li>Computer Vision</li>
+                            <li>Information Retrieval</li>
                         </ul>
                     </div>
                 </div>

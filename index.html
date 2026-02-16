@@ -1,931 +1,1160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zahra Gharehmahmoodlee - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-            --sidebar-bg: #f3f4f6;
-            --border-color: #ddd;
-            --accent-color: #007acc;
-            --heading-color: #333;
-            --content-bg: #ffffff;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zahra Gharehmahmoodlee - Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-        .dark-mode {
-            --bg-color: #1a1a1a;
-            --text-color: #e6e6e6;
-            --sidebar-bg: #2d2d2d;
-            --border-color: #444;
-            --accent-color: #4da6ff;
-            --heading-color: #ffffff;
-            --content-bg: #242424;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
+  <style>
+    :root{
+      --bg0:#06060a;
+      --bg1:#0b0b14;
+      --glass: rgba(255,255,255,.08);
+      --glass2: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.14);
+      --stroke2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --accent: #ae9ef0;
+      --accent2:#2dd4ff;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 24px;
+      --max: 1180px;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .light {
+      --bg0:#f6f7fb;
+      --bg1:#ffffff;
+      --glass: rgba(0,0,0,.04);
+      --glass2: rgba(0,0,0,.03);
+      --stroke: rgba(0,0,0,.10);
+      --stroke2: rgba(0,0,0,.08);
+      --text: rgba(12,12,18,.92);
+      --muted: rgba(12,12,18,.70);
+      --muted2: rgba(12,12,18,.55);
+      --shadow: 0 18px 60px rgba(0,0,0,.12);
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden;
-        }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 12% 12%, rgba(124,92,255,.55), transparent 55%),
+                  radial-gradient(900px 500px at 85% 30%, rgba(45,212,255,.40), transparent 60%),
+                  radial-gradient(900px 520px at 70% 85%, rgba(124,92,255,.35), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 30px;
-        }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity: .55;
+    }
 
-        /* Header & Theme Toggle */
-        .header {
-            grid-column: 1 / -1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
+    a{ color: inherit; text-decoration:none; }
+    a:hover{ text-decoration: underline; }
 
-        .theme-toggle {
-            background: var(--sidebar-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 8px 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
+    .wrap{
+      width:min(var(--max), calc(100% - 40px));
+      margin: 26px auto 80px;
+    }
 
-        /* Sidebar Styles */
-        .sidebar {
-            background-color: var(--sidebar-bg);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--card-shadow);
-            position: sticky;
-            top: 30px;
-            height: fit-content;
-        }
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 14px 16px;
+      border: 1px solid var(--stroke2);
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position: sticky;
+      top: 14px;
+      z-index: 10;
+    }
 
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 20px;
-            display: block;
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .brand strong{
+      font-size: 1.05rem;
+      letter-spacing: .2px;
+    }
+    .brand span{
+      font-size:.92rem;
+      color: var(--muted2);
+    }
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 5px;
-            color: var(--heading-color);
-            font-size: 1.6em;
-        }
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
 
-        /* Profile subtitle with icons */
-        .profile-subtitle {
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 1.1em;
-            line-height: 1.8;
-        }
+    .btn{
+      border: 1px solid var(--stroke2);
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .18s ease, border-color .18s ease;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: var(--stroke);
+    }
+    .btn i{ opacity:.9; }
 
-        .subtitle-line {
-            display: block;
-            color: var(--accent-color);
-            font-weight: 500;
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 28px;
-        }
+    .section{
+      margin-top: 22px;
+      border: 1px solid var(--stroke2);
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow:hidden;
+    }
 
-        .subtitle-line::before {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2em;
-        }
+    .section-head{
+      padding: 22px 22px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:16px;
+    }
 
-        .subtitle-line:nth-child(1)::before {
-            content: "🎓";
-        }
+    .kicker{
+      font-size:.9rem;
+      color: var(--muted2);
+      letter-spacing:.08em;
+      text-transform: uppercase;
+    }
 
-        .subtitle-line:nth-child(2)::before {
-            content: "🧠";
-        }
+    .title{
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+      letter-spacing:.3px;
+      margin-top: 6px;
+    }
 
-        .subtitle-line:nth-child(3)::before {
-            content: "🔬";
-        }
+    .section-body{
+      padding: 18px 22px 24px;
+    }
 
-        /* Profile Info with Icons */
-        .profile-info {
-            background: var(--content-bg);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-top: 20px;
-        }
+    .grid{ display:grid; gap:16px; }
+    .grid-2{ grid-template-columns: 1fr 1fr; }
+    .grid-3{ grid-template-columns: 1fr 1fr 1fr; }
+    .grid-auto{ grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 
-        .info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
+    @media (max-width: 900px){
+      .grid-2,.grid-3{ grid-template-columns: 1fr; }
+      .topbar{ position: static; }
+    }
 
-        .info-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
+    .card{
+      border: 1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: var(--stroke);
+    }
 
-        .info-item .icon {
-            margin-right: 12px;
-            color: var(--accent-color);
-            width: 20px;
-            text-align: center;
-        }
+    .card h3{
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      letter-spacing:.2px;
+    }
+    .card p{
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: .98rem;
+    }
 
-        .info-item .text {
-            font-size: 1rem;
-            color: var(--text-color);
-            line-height: 1.5;
-            word-break: break-word;
-        }
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 12px;
+    }
+    .tag{
+      font-size:.82rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(124,92,255,.20), rgba(45,212,255,.10));
+      color: var(--text);
+    }
 
-        .info-item a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    .cover{
+      padding: 34px 22px 28px;
+      position:relative;
+    }
+    .cover .big{
+      font-size: clamp(2.2rem, 6vw, 4.6rem);
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .cover .sub{
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 24px rgba(124,92,255,.55);
+      display:inline-block;
+    }
 
-        .info-item a:hover {
-            text-decoration: underline;
-        }
+    /* ✅ UPDATED: About grid (bigger + responsive) */
+    .about{
+      display:grid;
+      grid-template-columns: minmax(280px, 420px) 1fr;
+      gap:22px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .about{ grid-template-columns:1fr; }
+    }
 
-        /* Portfolio Links */
-        .portfolio-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-            justify-content: center;
-        }
+    /* ✅ UPDATED: Square profile image box */
+    .profile{
+      border: 1px solid var(--stroke2);
+      border-radius: 20px;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(255,255,255,.05));
+      position:relative;
 
-        .portfolio-links a {
-            color: var(--accent-color);
-            font-size: 1.5em;
-            transition: transform 0.3s ease;
-        }
+      aspect-ratio: 1 / 1;  /* ✅ مربعی */
+      width:100%;
+    }
+    .profile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter: contrast(1.05) saturate(1.05);
+    }
+    .profile::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(600px 300px at 50% 30%, rgba(124,92,255,.35), transparent 60%),
+                  linear-gradient(180deg, transparent, rgba(0,0,0,.35));
+      pointer-events:none;
+    }
 
-        .portfolio-links a:hover {
-            transform: translateY(-2px);
-        }
+    .about-right{ display:grid; gap:16px; }
 
-        /* Content Styles */
-        .content {
-            background-color: var(--content-bg);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: var(--card-shadow);
-        }
+    .about-top{
+      padding: 18px;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+    }
 
-        .main-title {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: var(--heading-color);
-        }
+    .about-top .hello{
+      color: var(--muted2);
+      letter-spacing:.06em;
+      text-transform: uppercase;
+      font-size:.9rem;
+      margin-bottom: 6px;
+    }
+    .about-top .name{
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing:.3px;
+    }
+    .about-top .uni{
+      color: var(--muted2);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .about-top .bio{
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1rem;
+    }
 
-        .intro-text {
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
+    .mini-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+    }
+    @media (max-width: 900px){ .mini-grid{ grid-template-columns:1fr; } }
 
-        .section {
-            margin-bottom: 40px;
-        }
+    .list{
+      margin-top: 10px;
+      display:grid;
+      gap:10px;
+      color: var(--muted);
+      line-height:1.7;
+      font-size:.98rem;
+    }
+    .li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .li i{
+      margin-top: 3px;
+      color: var(--accent2);
+      opacity:.95;
+      width:18px;
+    }
 
-        .section h2 {
-            font-size: 1.8em;
-            color: var(--heading-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--border-color);
-            position: relative;
-        }
-        
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--accent-color);
-        }
+    .toc-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap:14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){
+      .toc-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px){
+      .toc-grid{ grid-template-columns: 1fr; }
+    }
+    .toc-item{
+      padding: 18px;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      position:relative;
+      overflow:hidden;
+    }
+    .toc-item .num{
+      font-size: 2.3rem;
+      font-weight: 800;
+      letter-spacing:.04em;
+      margin-top: 6px;
+    }
+    .toc-item .lbl{
+      font-size:.95rem;
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
 
-        .section ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
+    .proj-grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .proj{
+      border: 1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border-radius: var(--radius);
+      padding: 16px;
+      grid-column: span 6;
+      min-height: 170px;
+    }
+    .proj.wide{ grid-column: span 12; }
+    @media (max-width: 900px){
+      .proj{ grid-column: span 12; }
+    }
 
-        .section li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-        }
+    .thanks{
+      text-align:center;
+      padding: 40px 22px;
+    }
+    .thanks h2{
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      letter-spacing:.08em;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .thanks p{
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.9;
+    }
 
-        .section li::before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
+    .social{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      margin-top: 16px;
+      flex-wrap:wrap;
+    }
+    .social a{
+      width: 48px;
+      height: 48px;
+      display:grid;
+      place-items:center;
+      border-radius: 14px;
+      border: 1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .social a:hover{
+      transform: translateY(-2px);
+      border-color: var(--stroke);
+      text-decoration:none;
+    }
 
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.10);
+      margin: 18px 0 0;
+    }
 
-        .three-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
+    /* Nice lists */
+    .nice-list{
+      line-height:1.9;
+      opacity:.85;
+      padding-left: 18px;
+    }
+    .nice-list li{ margin: 6px 0; }
 
-        .timeline-item {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent-color);
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 20px;
-            width: 2px;
-            height: calc(100% + 10px);
-            background: var(--accent-color);
-        }
-        
-        .timeline-item:last-child::after {
-            display: none;
-        }
+    /* Accordion (drawer) */
+    details.accordion{
+      border: 1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border-radius: 14px;
+      padding: 12px 14px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+    }
+    details.accordion + details.accordion{ margin-top: 12px; }
 
-        .course-category {
-            margin-bottom: 25px;
-        }
+    details.accordion summary{
+      list-style: none;
+      cursor: pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      color: var(--text);
+      user-select:none;
+    }
+    details.accordion summary::-webkit-details-marker{ display:none; }
 
-        .course-category h3 {
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
+    .acc-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 0;
+    }
+    .acc-left i{
+      color: var(--accent2);
+      width: 18px;
+      text-align:center;
+      opacity:.95;
+    }
+    .acc-title{
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
 
-        .featured-projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
+    .chev{
+      transition: transform .2s ease;
+      opacity:.9;
+    }
+    details.accordion[open] .chev{ transform: rotate(180deg); }
 
-        .project-card {
-            background: var(--sidebar-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-card h3 {
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-
-        .project-card p {
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .tech-tag {
-            background: var(--accent-color);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8em;
-        }
-
-        /* Technical Skills Section */
-        .skills-matrix {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .skill-category {
-            margin-bottom: 15px;
-        }
-
-        .skill-category h3 {
-            color: var(--accent-color);
-            margin-bottom: 12px;
-            font-size: 1.2em;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .skill-tag {
-            background: var(--sidebar-bg);
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-tag:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 900px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                position: static;
-                margin-bottom: 30px;
-            }
-            
-            .two-column, .three-column {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-projects {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-matrix {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .content {
-                padding: 25px;
-            }
-            
-            .main-title {
-                font-size: 2em;
-            }
-            
-            .profile-info {
-                padding: 1.2rem;
-            }
-            
-            .subtitle-line {
-                font-size: 1em;
-                padding-left: 24px;
-            }
-            
-            .subtitle-line::before {
-                font-size: 1.1em;
-            }
-        }
-    </style>
+    .acc-body{
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="wrap">
 
-    <div class="container">
-        <div class="header">
-            <h1 class="main-title">Zahra Gharehmahmoodlee</h1>
-            <div class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon"></i>
-                <span>Dark Mode</span>
-            </div>
-        </div>
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="brand">
+        <strong>Zahra Gharehmahmoodlee</strong>
+        <span>Portfolio / CV</span>
+      </div>
 
-        <aside class="sidebar">
-            <img src="zahra.jpg" alt="Zahra Gharehmahmoodlee" class="profile-img">
-            <h2>Zahra Gharehmahmoodlee</h2>
-            
-            <!-- ✅ 1️⃣ Sidebar subtitle (هویت Bio/Health شفاف‌تر) -->
-            <div class="profile-subtitle">
-                <span class="subtitle-line">Computer Science Graduate</span>
-                <span class="subtitle-line">AI & Machine Learning for Healthcare</span>
-                <span class="subtitle-line">Computational Biology & Bioinformatics (Exploring)</span>
-            </div>
-            
-            <div class="profile-info">
-                <div class="info-item">
-                    <i class="icon fas fa-brain"></i>
-                    <span class="text">AI & Computer Vision Researcher</span>
-                </div>
-                <div class="info-item">
-                    <i class="icon fas fa-university"></i>
-                    <span class="text"><a href="https://aut.ac.ir" target="_blank">Amirkabir University of Technology</a></span>
-                </div>
-                <div class="info-item">
-                    <i class="icon fas fa-envelope"></i>
-                    <span class="text"><a href="mailto:zahramahmoodlee2012@gmail.com">Email</a></span>
-                </div>
-            </div>
-            
-            <div class="portfolio-links">
-                <a href="https://github.com/zahramh99" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.artstation.com/lunebelue" target="_blank" title="ArtStation">
-                    <i class="fas fa-palette"></i>
-                </a>
-            </div>
-        </aside>
-
-        <main class="content">
-            <!-- ✅ 2️⃣ Intro text (نسخه نهایی هدف‌دار) -->
-            <section class="section">
-                <p class="intro-text">
-                    Computer Science graduate with a research-oriented background in artificial intelligence and machine learning, with a strong focus on healthcare, biomedical data analysis, and clinical AI applications. I have hands-on experience in medical imaging, clinical NLP, explainable machine learning, and large language models, and I am particularly interested in integrating computational methods with biological and clinical data. My goal is to contribute to interdisciplinary research at the intersection of computer science, health, and bioinformatics.
-                </p>
-            </section>
-
-            <!-- Featured Projects Section -->
-            <section class="section">
-                <h2>Featured Projects</h2>
-                <div class="featured-projects">
-                    <div class="project-card">
-                        <h3>Brain Tumor Detection</h3>
-                        <p>Applied deep CNNs for early-stage brain tumor classification and visualization through Grad-CAM for interpretability in clinical settings.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Deep Learning</span>
-                            <span class="tech-tag">Grad-CAM</span>
-                            <span class="tech-tag">Medical AI</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">Neuroimaging</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3>VisionX: Explainable CNNs</h3>
-                        <p>Modular, interpretable CNN with visualization tools for explainability and model behavior analysis in medical imaging applications.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">PyTorch</span>
-                            <span class="tech-tag">CNN</span>
-                            <span class="tech-tag">Explainable AI</span>
-                            <span class="tech-tag">Medical Imaging</span>
-                            <span class="tech-tag">Diagnostics</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3>ClinicalClusterAI</h3>
-                        <p>Interpretable patient clustering pipeline for clinical outcome prediction from heterogeneous hospital data.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Clustering</span>
-                            <span class="tech-tag">Clinical Data</span>
-                            <span class="tech-tag">Predictive Modeling</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                        </div>
-                    </div>
-                    
-                    <!-- ✅ 3️⃣ Featured Projects (تمرکز Health / Bio) - پروژه جدید -->
-                    <div class="project-card">
-                        <h3>ADHD-fMRI Classification Pipeline</h3>
-                        <p>
-                            Machine learning pipeline for predicting ADHD diagnosis and biological sex from fMRI-based brain connectome data using PCA, feature selection, and XGBoost, with cross-dataset evaluation.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Neuroimaging</span>
-                            <span class="tech-tag">fMRI</span>
-                            <span class="tech-tag">Biomedical ML</span>
-                            <span class="tech-tag">XGBoost</span>
-                            <span class="tech-tag">PCA</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Research Output Section -->
-            <section class="section">
-                <h2>Research Output</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <strong>Thesis: Adaptive Retrieval-Augmented Summarization of User Opinions with Efficient LLMs</strong><br>
-                        Amirkabir University of Technology | Grade: 19.25/20<br>
-                        <em>Developed efficient LLM-based summarization systems with adaptive retrieval mechanisms.</em>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>GitHub Research Repository</strong><br>
-                        <a href="https://github.com/zahramh99" target="_blank">github.com/zahramh99</a><br>
-                        <em>Open-source implementations of computer vision, XR, and AI projects.</em>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2>Education</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <strong>Amirkabir University of Technology</strong><br>
-                        B.Sc., Computer Science, GPA: 3.2/4.0 (14.32/20.00)<br>
-                        September 2018 - August 2023<br>
-                        <em>Thesis: Adaptive Retrieval-Augmented Summarization of User Opinions with Efficient LLMs (Grade: 19.25/20)</em>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>Inverse School</strong><br>
-                        3D Modeling Student<br>
-                        Current
-                    </div>
-                </div>
-            </section>
-
-            <!-- ✅ 4️⃣ Research Interests (اول Bio، بعد AI، بقیه ثانویه) -->
-            <section class="section">
-                <h2>Research Interests</h2>
-                <div class="two-column">
-                    <div>
-                        <h3>Computational Biology & Health AI</h3>
-                        <ul>
-                            <li>Computational Biology & Bioinformatics</li>
-                            <li>Machine Learning for Biomedical & Clinical Data</li>
-                            <li>Medical Imaging & Neuroimaging</li>
-                            <li>Clinical NLP & Health Data Analysis</li>
-                        </ul>
-
-                        <h3>Core AI & Machine Learning</h3>
-                        <ul>
-                            <li>Explainable & Interpretable AI</li>
-                            <li>Large Language Models</li>
-                            <li>Multimodal Learning</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3>Computer Vision (Secondary)</h3>
-                        <ul>
-                            <li>Medical Image Analysis</li>
-                            <li>3D Reconstruction</li>
-                            <li>Representation Learning</li>
-                        </ul>
-
-                        <h3>Human-Centered AI (Secondary)</h3>
-                        <ul>
-                            <li>Affective Computing</li>
-                            <li>Human-AI Interaction</li>
-                            <li>XR for Healthcare Applications</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ✅ 5️⃣ Technical Skills (Bio-aware) -->
-            <section class="section">
-                <h2>Technical Skills</h2>
-                <div class="skills-matrix">
-                    <div class="skill-category">
-                        <h3>Core Programming</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">C/C++</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">MATLAB</span>
-                            <span class="skill-tag">Bash</span>
-                            <span class="skill-tag">SQL/TSQL</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>AI & Machine Learning</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">PyTorch</span>
-                            <span class="skill-tag">TensorFlow</span>
-                            <span class="skill-tag">Keras</span>
-                            <span class="skill-tag">Hugging Face</span>
-                            <span class="skill-tag">Scikit-learn</span>
-                            <span class="skill-tag">LangChain</span>
-                            <span class="skill-tag">XGBoost</span>
-                            <span class="skill-tag">Feature Selection</span>
-                            <span class="skill-tag">PCA</span>
-                            <span class="skill-tag">Interpretable ML</span>
-                        </div>
-                    </div>
-                    
-                    <!-- ✅ دسته جدید Biomedical & Data Analysis -->
-                    <div class="skill-category">
-                        <h3>Biomedical & Data Analysis</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Medical Imaging</span>
-                            <span class="skill-tag">Neuroimaging (fMRI)</span>
-                            <span class="skill-tag">Clinical Data Analysis</span>
-                            <span class="skill-tag">Biomedical Machine Learning</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>Computer Vision & XR/3D</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">OpenCV</span>
-                            <span class="skill-tag">Unity3D</span>
-                            <span class="skill-tag">Blender</span>
-                            <span class="skill-tag">OpenGL/WebGL</span>
-                            <span class="skill-tag">SLAM</span>
-                            <span class="skill-tag">Structure-from-Motion</span>
-                            <span class="skill-tag">Point Cloud Processing</span>
-                            <span class="skill-tag">ARKit/ARCore</span>
-                            <span class="skill-tag">Photogrammetry</span>
-                            <span class="skill-tag">3D Reconstruction</span>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>Tools & Platforms</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">Kubernetes</span>
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Linux</span>
-                            <span class="skill-tag">Jupyter</span>
-                            <span class="skill-tag">Google Colab</span>
-                            <span class="skill-tag">CUDA</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Experience Section -->
-            <section class="section">
-                <h2>Professional Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <strong>Researcher</strong> — Institute for Research in Fundamental Sciences (IPM)<br>
-                        July 2024 – September 2024<br>
-                        <ul>
-                            <li>Developed brain-inspired vision models for object recognition using transfer learning & neural activation analysis</li>
-                            <li>Conducted comparative study of recurrent & CNN architecture to investigate biologically motivated mechanisms in visual perception</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>Researcher</strong> — Data Science Innovation Center Lab (DS Lab)<br>
-                        April 2022 – November 2024<br>
-                        <ul>
-                            <li>Designed and implemented adaptive retrieval-augmented generation (RAG) pipelines for multilingual opinion summarization</li>
-                            <li>Fine-tuned transformer-based models (T5, BERT) to improve relevance, scalability, and cross-domain robustness in text summarization</li>
-                            <li>Supervisor: Prof. Mohammad Akbari</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>Frontend Engineer</strong> — Webcore<br>
-                        July 2021 – April 2022<br>
-                        <ul>
-                            <li>Developed responsive, accessible web interfaces using React.js, TypeScript, and Vue.js</li>
-                            <li>Enhanced usability and user experience through optimized frontend architectures</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>Teaching Assistant</strong> — Amirkabir University of Technology<br>
-                        September 2023 – January 2024<br>
-                        <ul>
-                            <li>Artificial Intelligence and Workshop (Supervisor: Prof. Mohammad Akbari)</li>
-                            <li>Computer Workshop (Supervisor: Prof. Behnam Yousefimehr)</li>
-                            <li>Combinatorics and Applications (Supervisor: Prof. Alireza Mofidi)</li>
-                        </ul>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>Teaching Assistant</strong> — Azad University<br>
-                        February 2021 – January 2022<br>
-                        <ul>
-                            <li>Software Engineering</li>
-                            <li>System Analysis and Design</li>
-                            <li>Supervisor: Prof. Homayoun Motameni</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Additional Projects Section -->
-            <section class="section">
-                <h2>Additional Projects</h2>
-                <div class="two-column">
-                    <div>
-                        <h3>AI & NLP</h3>
-                        <ul>
-                            <li><strong>Adaptive RAG for Opinion Summarization:</strong> Thesis project developing efficient LLM-based summarization systems</li>
-                            <li><strong>ClinicalClusterAI:</strong> Interpretable patient clustering pipeline for clinical outcome prediction</li>
-                            <li><strong>Document Analysis with LLMs:</strong> Automated PDF parsing, summarization, and question generation</li>
-                            <li><strong>Clinical NLP for Neurodevelopmental Analysis:</strong> AI-Assisted ADHD Therapy Dialogue Mining using Gemini API</li>
-                        </ul>
-                        
-                        <h3>Human-Centered AI</h3>
-                        <ul>
-                            <li><strong>Journal Talk:</strong> Reflective AI journal assistant for mental wellness</li>
-                            <li><strong>Counseler Chatbot:</strong> Mental health chatbot with predefined conversational intents</li>
-                            <li><strong>The Empathy Mirror:</strong> AI-driven affect recognition using facial and speech cues</li>
-                            <li><strong>GestureShape-Matcher:</strong> Interactive computer-vision game recognizing hand gestures to match geometric shapes</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>Systems & Applications</h3>
-                        <ul>
-                            <li><strong>Persian Search Engine:</strong> Information retrieval system for Persian content</li>
-                            <li><strong>Coin Price Monitoring:</strong> Cryptocurrency app with Docker and Kubernetes deployment</li>
-                            <li><strong>Twitter Clone:</strong> JavaFX-based social platform with Light/Dark Mode GUIs</li>
-                            <li><strong>Sign Language Translator:</strong> Real-time system using CNN/LSTM for gesture recognition</li>
-                            <li><strong>Pacman AI:</strong> Game developed using AI algorithms based on Stanford's CS221 course</li>
-                            <li><strong>Super Mario (Genetic Algorithm):</strong> Evolutionary optimization for gameplay strategy</li>
-                        </ul>
-                        
-                        <h3>Computer Vision & ML</h3>
-                        <ul>
-                            <li><strong>TikTok-AI Voice Selector:</strong> Multimodal AI for expressive voiceover recommendations</li>
-                            <li><strong>Next Word Prediction:</strong> Fine-tuned LSTM-based language models for text sequence prediction</li>
-                            <li><strong>Synthetic Data Generation with GANs:</strong> Created synthetic tabular datasets for privacy preservation</li>
-                            <li><strong>Outlier and Anomaly Detection:</strong> Implemented One-Class SVM and LSTM for anomaly detection</li>
-                            <li><strong>SimCLR for Representation Learning:</strong> Applied to CIFAR-10 dataset</li>
-                            <li><strong>Dynamic Pricing Strategy:</strong> Reinforcement learning agent for real-time pricing optimization</li>
-                            <li><strong>Real-Time AR Face Mask Try-On:</strong> Augmented reality system for face tracking and virtual mask overlay</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Related Courses -->
-            <section class="section">
-                <h2>Related Courses & Certifications</h2>
-                <div class="three-column">
-                    <div class="course-category">
-                        <h3>AI & Machine Learning</h3>
-                        <ul>
-                            <li>Introduction to Artificial Intelligence (IBM)</li>
-                            <li>Introduction to Deep Learning and Neural Networks with Keras (IBM)</li>
-                            <li>Deep Learning using TensorFlow (IBM)</li>
-                            <li>Deep Neural Networks with PyTorch (IBM)</li>
-                            <li>Open Source Models with Hugging Face</li>
-                            <li>Introduction to Large Language Models (Google)</li>
-                            <li>Finetuning Large Language Models (DeepMind)</li>
-                            <li>Transformer Models and BERT Model (Google)</li>
-                            <li>Introduction to Generative AI (Google)</li>
-                            <li>Prompt Engineering with Llama 2 and 3 (Meta)</li>
-                            <li>ChatGPT Prompt Engineering (OpenAI)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="course-category">
-                        <h3>Healthcare & Neuroscience</h3>
-                        <ul>
-                            <li>Fundamentals of Machine Learning for Healthcare (Stanford University)</li>
-                            <li>Fundamental Neuroscience for Neuroimaging (Johns Hopkins University)</li>
-                            <li>Computational Neuroscience: Neuronal Dynamics of Cognition (EPFL)</li>
-                            <li>Digital Signal Processing 1: Basic Concepts and Algorithms (EPFL)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="course-category">
-                        <h3>University Courses</h3>
-                        <ul>
-                            <li>Artificial Intelligence</li>
-                            <li>Machine Learning</li>
-                            <li>Natural Language Processing</li>
-                            <li>Computer Vision</li>
-                            <li>Information Retrieval</li>
-                            <li>Data Structures and Algorithms</li>
-                            <li>Computer Networks</li>
-                            <li>Combinatorics and Applications</li>
-                            <li>Fundamentals of Numerical Analysis</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ✅ 6️⃣ Languages (تمیز و استاندارد) -->
-            <section class="section">
-                <h2>Languages</h2>
-                <ul>
-                    <li><strong>Persian:</strong> Native</li>
-                    <li><strong>English:</strong> IELTS Band 7.0 (Overall: 7.0, R:7.0, W:6.5, L:8.0, S:6.5)</li>
-                    <li><strong>Turkish:</strong> Native</li>
-                    <li><strong>French:</strong> A2 (in progress, currently studying)</li>
-                </ul>
-            </section>
-
-            <section class="section">
-                <h2>Extracurricular Activities</h2>
-                <ul>
-                    <li>Cooperator in ICAISV Webinar — Amirkabir University of Technology (May 2023)</li>
-                    <li>Member of Student Scientific Chapter — Amirkabir University of Technology (2021 – 2022)</li>
-                    <li>Volunteer Columnist, Halgheh Magazine — Amirkabir University of Technology (2021 - 2022)</li>
-                    <li>Chair of Git webinar — Amirkabir University of Technology (Sep 2020 - Dec 2020)</li>
-                </ul>
-            </section>
-        </main>
+      <div class="actions">
+        <button class="btn" id="themeBtn" type="button" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+          <span>Light</span>
+        </button>
+      </div>
     </div>
 
-    <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const icon = themeToggle.querySelector('i');
-        const text = themeToggle.querySelector('span');
-        
-        // Check for saved theme preference or respect OS preference
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            body.classList.add('dark-mode');
-            icon.classList.replace('fa-moon', 'fa-sun');
-            text.textContent = 'Light Mode';
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-                text.textContent = 'Light Mode';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                icon.classList.replace('fa-sun', 'fa-moon');
-                text.textContent = 'Dark Mode';
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    </script>
+    <!-- COVER -->
+    <section class="section">
+      <div class="section-body cover">
+        <div class="big">PORTFOLIO<span style="opacity:.55">.</span></div>
+        <div class="sub">
+          <span class="dot"></span>
+          <span>Your Name: <strong>Zahra Gharehmahmoodlee</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Hello, I am</div>
+          <div class="title">Zahra Gharehmahmoodlee</div>
+        </div>
+        <div style="opacity:.7">About</div>
+      </div>
+
+      <div class="section-body">
+        <div class="about">
+
+          <div class="profile">
+            <img src="zahra.jpg" alt="Zahra Gharehmahmoodlee">
+          </div>
+
+          <div class="about-right">
+            <div class="about-top">
+              <div class="hello">About Me</div>
+              <div class="name">Zahra Gharehmahmoodlee</div>
+              <div class="uni">B.Sc. in Computer Science — Amirkabir University of Technology</div>
+
+              <p class="bio">
+                A Computer Science graduate with combined research and technical experience in artificial intelligence and data-driven systems.
+                My background bridges rigorous academic research with hands-on system development across natural language processing,
+                computer vision, and large-scale machine learning workflows.
+                <br/><br/>
+                I have worked on transformer-based NLP systems, retrieval-augmented pipelines, interpretable deep learning models,
+                and medical imaging applications, with a consistent focus on building reliable, well-evaluated, and practically deployable solutions.
+                My work reflects both algorithmic depth and engineering discipline—spanning model design, experimentation, implementation, and system integration.
+                <br/><br/>
+                I am particularly interested in advancing robust and interpretable AI methods within data-intensive scientific and healthcare domains,
+                and in contributing to research environments where strong computational foundations meet real-world impact.
+              </p>
+
+              <div class="list" style="margin-top:14px">
+                <div class="li"><i class="fa-solid fa-graduation-cap"></i><span>Computer Science (B.Sc.)</span></div>
+                <div class="li"><i class="fa-solid fa-brain"></i><span>Machine Learning & Intelligent Systems</span></div>
+                <div class="li"><i class="fa-solid fa-dna"></i><span>Biomedical AI & Computational Biology</span></div>
+              </div>
+            </div>
+
+            <div class="mini-grid">
+              <div class="card">
+                <h3>Education</h3>
+                <p class="muted">
+                  <strong>Amirkabir University of Technology</strong><br/>
+                  B.Sc., Computer Science<br/>
+                  September 2018 - August 2023<br/>
+                  <em>Thesis: Adaptive Retrieval-Augmented Summarization of User Opinions with Efficient LLMs (Grade: 19.25/20)</em><br/><br/>
+                  <strong>Inverse School</strong><br/>
+                  3D Modeling Student — Current
+                </p>
+              </div>
+
+              <div class="card">
+                <h3>Professional Links</h3>
+                <div class="list" style="margin-top: 8px;">
+                  <div class="li">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span><a href="mailto:zahramahmoodlee2012@gmail.com">zahramahmoodlee2012@gmail.com</a></span>
+                  </div>
+
+                  <div class="li">
+                    <i class="fab fa-github"></i>
+                    <span><a href="https://github.com/zahramh99" target="_blank" rel="noreferrer">github.com/zahramh99</a></span>
+                  </div>
+
+                  <div class="li">
+                    <i class="fab fa-linkedin"></i>
+                    <span><a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank" rel="noreferrer">linkedin.com/in/zahragharehmahmoodlee</a></span>
+                  </div>
+                </div>
+
+                <div class="social" style="justify-content:flex-start; margin-top:14px">
+                  <a href="https://github.com/zahramh99" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                  <a href="https://zahramh99.github.io/" target="_blank" rel="noreferrer" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>Technical Skills (Quick View)</h3>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">TensorFlow</span>
+                <span class="tag">Scikit-learn</span>
+                <span class="tag">Transformers</span>
+                <span class="tag">Hugging Face</span>
+                <span class="tag">RAG</span>
+                <span class="tag">Medical Imaging</span>
+                <span class="tag">Neuroimaging (fMRI)</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Linux</span>
+                <span class="tag">Git</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLE OF CONTENT -->
+    <section class="section" id="toc">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Table of Content</div>
+          <div class="title">Sections</div>
+        </div>
+        <div style="opacity:.7">Navigate</div>
+      </div>
+
+      <div class="section-body">
+        <div class="toc-grid">
+          <a class="toc-item" href="#featured">
+            <div class="lbl">Featured Projects</div>
+            <div class="num">01</div>
+          </a>
+          <a class="toc-item" href="#research">
+            <div class="lbl">Research Output</div>
+            <div class="num">02</div>
+          </a>
+          <a class="toc-item" href="#interests">
+            <div class="lbl">Research Interests</div>
+            <div class="num">03</div>
+          </a>
+          <a class="toc-item" href="#skills">
+            <div class="lbl">Technical Skills</div>
+            <div class="num">04</div>
+          </a>
+          <a class="toc-item" href="#experience">
+            <div class="lbl">Experience</div>
+            <div class="num">05</div>
+          </a>
+          <a class="toc-item" href="#more">
+            <div class="lbl">Additional Projects</div>
+            <div class="num">06</div>
+          </a>
+          <a class="toc-item" href="#courses">
+            <div class="lbl">Courses</div>
+            <div class="num">07</div>
+          </a>
+          <a class="toc-item" href="#languages">
+            <div class="lbl">Languages</div>
+            <div class="num">08</div>
+          </a>
+          <a class="toc-item" href="#activities">
+            <div class="lbl">Activities</div>
+            <div class="num">09</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section class="section" id="featured">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Selected Work</div>
+          <div class="title">Featured Projects</div>
+        </div>
+        <div style="opacity:.7">Highlights</div>
+      </div>
+
+      <div class="section-body">
+        <div class="grid grid-auto">
+          <div class="card">
+            <h3>Brain Tumor Detection</h3>
+            <p>Applied deep CNNs for early-stage brain tumor classification and visualization through Grad-CAM for interpretability in clinical settings.</p>
+            <div class="tags">
+              <span class="tag">Deep Learning</span><span class="tag">Grad-CAM</span><span class="tag">Medical AI</span><span class="tag">TensorFlow</span><span class="tag">Neuroimaging</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>VisionX: Explainable CNNs</h3>
+            <p>Modular, interpretable CNN with visualization tools for explainability and model behavior analysis in medical imaging applications.</p>
+            <div class="tags">
+              <span class="tag">PyTorch</span><span class="tag">CNN</span><span class="tag">Explainable AI</span><span class="tag">Medical Imaging</span><span class="tag">Diagnostics</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>ClinicalClusterAI</h3>
+            <p>Interpretable patient clustering pipeline for clinical outcome prediction from heterogeneous hospital data.</p>
+            <div class="tags">
+              <span class="tag">Clustering</span><span class="tag">Clinical Data</span><span class="tag">Predictive Modeling</span><span class="tag">Python</span><span class="tag">Scikit-learn</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>ADHD-fMRI Classification Pipeline</h3>
+            <p>Machine learning pipeline for predicting ADHD diagnosis and biological sex from fMRI-based brain connectome data using PCA, feature selection, and XGBoost, with cross-dataset evaluation.</p>
+            <div class="tags">
+              <span class="tag">Neuroimaging</span><span class="tag">fMRI</span><span class="tag">Biomedical ML</span><span class="tag">XGBoost</span><span class="tag">PCA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH OUTPUT -->
+    <section class="section" id="research">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Research</div>
+          <div class="title">Research Output</div>
+        </div>
+        <div style="opacity:.7">Highlights</div>
+      </div>
+
+      <div class="section-body">
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Thesis</h3>
+            <p>
+              <strong>Adaptive Retrieval-Augmented Summarization of User Opinions with Efficient LLMs</strong><br/>
+              Amirkabir University of Technology | Grade: 19.25/20<br/>
+              <em>Developed efficient LLM-based summarization systems with adaptive retrieval mechanisms.</em>
+            </p>
+          </div>
+          <div class="card">
+            <h3>GitHub Research Repository</h3>
+            <p>
+              <a href="https://github.com/zahramh99" target="_blank" rel="noreferrer">github.com/zahramh99</a><br/>
+              <em>Open-source implementations of computer vision, XR, and AI projects.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH INTERESTS -->
+    <section class="section" id="interests">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Focus Areas</div>
+          <div class="title">Research Interests</div>
+        </div>
+        <div style="opacity:.7">Topics</div>
+      </div>
+
+      <div class="section-body">
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Computational Biology & Health AI</h3>
+            <p>
+              ▹ Computational Biology & Bioinformatics<br/>
+              ▹ Machine Learning for Biomedical & Clinical Data<br/>
+              ▹ Medical Imaging & Neuroimaging<br/>
+              ▹ Clinical NLP & Health Data Analysis
+            </p>
+            <div class="tags">
+              <span class="tag">Bioinformatics</span><span class="tag">Clinical AI</span><span class="tag">Neuroimaging</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Core AI & Secondary Areas</h3>
+            <p>
+              <strong>Core AI & ML</strong><br/>
+              ▹ Explainable & Interpretable AI<br/>
+              ▹ Large Language Models<br/>
+              ▹ Multimodal Learning<br/><br/>
+              <strong>Secondary</strong><br/>
+              ▹ Computer Vision, 3D Reconstruction, Representation Learning<br/>
+              ▹ Human-Centered AI, Affective Computing, XR for Healthcare
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section class="section" id="skills">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Toolbox</div>
+          <div class="title">Technical Skills</div>
+        </div>
+        <div style="opacity:.7">Summary</div>
+      </div>
+
+      <div class="section-body">
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Core Programming</h3>
+            <p>Python • C/C++ • Java • JavaScript • MATLAB • Bash • SQL/TSQL</p>
+          </div>
+          <div class="card">
+            <h3>AI & Machine Learning</h3>
+            <p>PyTorch • TensorFlow • Keras • Hugging Face • Scikit-learn • LangChain • XGBoost • Feature Selection • PCA • Interpretable ML</p>
+          </div>
+          <div class="card">
+            <h3>CV / XR / 3D & Tools</h3>
+            <p>OpenCV • Unity3D • Blender • OpenGL/WebGL • SLAM • SfM • Point Cloud • ARKit/ARCore • Photogrammetry • Docker • Kubernetes • Git • Linux • CUDA</p>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top:16px">
+          <div class="card">
+            <h3>Biomedical & Data Analysis</h3>
+            <p>Medical Imaging • Neuroimaging (fMRI) • Clinical Data Analysis • Biomedical Machine Learning</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Career</div>
+          <div class="title">Professional Experience</div>
+        </div>
+        <div style="opacity:.7">Roles</div>
+      </div>
+
+      <div class="section-body">
+        <div class="proj-grid">
+          <div class="proj wide">
+            <h3>Researcher — Institute for Research in Fundamental Sciences (IPM)</h3>
+            <p style="opacity:.75; line-height:1.8">
+              July 2025 – September 2025<br/>
+              ▹ Conducted research collaboration with IPM-affiliated researchers<br/>
+              ▹ Developed brain-inspired vision models for object recognition using transfer learning & neural activation analysis<br/>
+              ▹ Performed comparative study of recurrent networks and CNN architectures to investigate biologically motivated mechanisms in visual perception
+            </p>
+          </div>
+
+          <div class="proj">
+            <h3>Researcher — Data Science Innovation Center Lab (DS Lab)</h3>
+            <p style="opacity:.75; line-height:1.8">
+              April 2022 – November 2024<br/>
+              ▹ Designed and implemented adaptive RAG pipelines for multilingual opinion summarization<br/>
+              ▹ Fine-tuned transformer-based models (T5, BERT) to improve relevance, scalability, and cross-domain robustness<br/>
+              ▹ Conducted systematic evaluation across multiple domains
+            </p>
+          </div>
+
+          <div class="proj">
+            <h3>Frontend Engineer — Webcore</h3>
+            <p style="opacity:.75; line-height:1.8">
+              July 2021 – April 2022<br/>
+              ▹ Developed responsive, accessible web interfaces using React.js, TypeScript, and Vue.js<br/>
+              ▹ Improved usability, performance, and user experience across web applications
+            </p>
+          </div>
+
+          <div class="proj">
+            <h3>Teaching Assistant — Amirkabir University of Technology</h3>
+            <p style="opacity:.75; line-height:1.8">
+              September 2023 – January 2024<br/>
+              ▹ Artificial Intelligence and Workshop<br/>
+              ▹ Computer Workshop<br/>
+              ▹ Combinatorics and Applications
+            </p>
+          </div>
+
+          <div class="proj">
+            <h3>Teaching Assistant — Azad University</h3>
+            <p style="opacity:.75; line-height:1.8">
+              Spring 2021 – Fall 2021<br/>
+              ▹ Software Engineering<br/>
+              ▹ System Analysis and Design
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADDITIONAL PROJECTS (ACCORDION) -->
+    <section class="section" id="more">
+      <div class="section-head">
+        <div>
+          <div class="kicker">More</div>
+          <div class="title">Additional Projects</div>
+        </div>
+        <div style="opacity:.7">Expandable</div>
+      </div>
+
+      <div class="section-body">
+        <div class="card">
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-robot"></i><span class="acc-title">AI & NLP</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li><strong>Adaptive RAG for Opinion Summarization:</strong> Thesis project developing efficient LLM-based summarization systems</li>
+                <li><strong>ClinicalClusterAI:</strong> Interpretable patient clustering pipeline for clinical outcome prediction</li>
+                <li><strong>Document Analysis with LLMs:</strong> Automated PDF parsing, summarization, and question generation</li>
+                <li><strong>Clinical NLP for Neurodevelopmental Analysis:</strong> AI-Assisted ADHD Therapy Dialogue Mining using Gemini API</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-heart"></i><span class="acc-title">Human-Centered AI</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li><strong>Journal Talk:</strong> Reflective AI journal assistant for mental wellness</li>
+                <li><strong>Counseler Chatbot:</strong> Mental health chatbot with predefined conversational intents</li>
+                <li><strong>The Empathy Mirror:</strong> AI-driven affect recognition using facial and speech cues</li>
+                <li><strong>GestureShape-Matcher:</strong> Interactive computer-vision game recognizing hand gestures</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-layer-group"></i><span class="acc-title">Systems & Applications</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li><strong>Persian Search Engine:</strong> Information retrieval system for Persian content</li>
+                <li><strong>Coin Price Monitoring:</strong> Cryptocurrency app with Docker & Kubernetes deployment</li>
+                <li><strong>Twitter Clone:</strong> JavaFX-based social platform with Light/Dark Mode GUIs</li>
+                <li><strong>Sign Language Translator:</strong> Real-time system using CNN/LSTM for gesture recognition</li>
+                <li><strong>Pacman AI:</strong> Game developed using AI algorithms based on Stanford's CS221</li>
+                <li><strong>Super Mario (Genetic Algorithm):</strong> Evolutionary optimization for gameplay strategy</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-eye"></i><span class="acc-title">Computer Vision & ML</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li><strong>TikTok-AI Voice Selector:</strong> Multimodal AI for expressive voiceover recommendations</li>
+                <li><strong>Next Word Prediction:</strong> Fine-tuned LSTM-based language models</li>
+                <li><strong>Synthetic Data Generation with GANs:</strong> Created synthetic tabular datasets for privacy</li>
+                <li><strong>Outlier & Anomaly Detection:</strong> One-Class SVM + LSTM temporal patterns</li>
+                <li><strong>SimCLR for Representation Learning:</strong> Applied to CIFAR-10 dataset</li>
+                <li><strong>Dynamic Pricing Strategy:</strong> Reinforcement learning agent for pricing optimization</li>
+                <li><strong>Real-Time AR Face Mask Try-On:</strong> Face tracking and virtual mask overlay</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED COURSES (ACCORDION) -->
+    <section class="section" id="courses">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Learning</div>
+          <div class="title">Related Courses & Certifications</div>
+        </div>
+        <div style="opacity:.7">Expandable</div>
+      </div>
+
+      <div class="section-body">
+        <div class="card">
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-brain"></i><span class="acc-title">AI & Machine Learning</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li>Introduction to Artificial Intelligence (IBM)</li>
+                <li>Deep Learning & Neural Networks with Keras (IBM)</li>
+                <li>Deep Learning using TensorFlow (IBM)</li>
+                <li>Deep Neural Networks with PyTorch (IBM)</li>
+                <li>Open Source Models with Hugging Face</li>
+                <li>Introduction to Large Language Models (Google)</li>
+                <li>Finetuning Large Language Models (DeepMind)</li>
+                <li>Transformer Models & BERT (Google)</li>
+                <li>Introduction to Generative AI (Google)</li>
+                <li>Prompt Engineering (Meta & OpenAI)</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-stethoscope"></i><span class="acc-title">Healthcare & Neuroscience</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li>Machine Learning for Healthcare (Stanford)</li>
+                <li>Fundamental Neuroscience for Neuroimaging (Johns Hopkins)</li>
+                <li>Computational Neuroscience (EPFL)</li>
+                <li>Digital Signal Processing (EPFL)</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-building-columns"></i><span class="acc-title">University Courses</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li>Artificial Intelligence</li>
+                <li>Machine Learning</li>
+                <li>Natural Language Processing</li>
+                <li>Computer Vision</li>
+                <li>Information Retrieval</li>
+                <li>Data Structures & Algorithms</li>
+                <li>Computer Networks</li>
+                <li>Combinatorics & Applications</li>
+                <li>Numerical Analysis</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGUAGES (ACCORDION) -->
+    <section class="section" id="languages">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Profile</div>
+          <div class="title">Languages</div>
+        </div>
+        <div style="opacity:.7">Expandable</div>
+      </div>
+
+      <div class="section-body">
+        <div class="card">
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-language"></i><span class="acc-title">Languages</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li><strong>Persian:</strong> Native</li>
+                <li><strong>Turkish:</strong> Native</li>
+                <li><strong>English:</strong> IELTS 7.0 (R:7.0, W:6.5, L:8.0, S:6.5)</li>
+                <li><strong>French:</strong> A2 (in progress)</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXTRACURRICULAR (ACCORDION) -->
+    <section class="section" id="activities">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Academic Engagement</div>
+          <div class="title">Extracurricular Activities</div>
+        </div>
+        <div style="opacity:.7">Expandable</div>
+      </div>
+
+      <div class="section-body">
+        <div class="card">
+          <details class="accordion">
+            <summary>
+              <div class="acc-left"><i class="fa-solid fa-people-group"></i><span class="acc-title">Extracurricular Activities</span></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </summary>
+            <div class="acc-body">
+              <ul class="nice-list">
+                <li>Cooperation in ICAISV Webinar — Amirkabir University of Technology (May 2023)</li>
+                <li>Member of Student Scientific Chapter — Amirkabir University of Technology (2021–2022)</li>
+                <li>Volunteer Columnist, Halgheh Magazine — Amirkabir University of Technology (2021–2022)</li>
+                <li>Chair of Git Webinar — Amirkabir University of Technology (Sep 2020–Dec 2020)</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- THANK YOU -->
+    <section class="section">
+      <div class="section-body thanks">
+        <h2>THANK YOU</h2>
+        <p>Let’s collaborate and create something great together.</p>
+
+        <div class="social">
+          <a href="https://www.linkedin.com/in/zahragharehmahmoodlee/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:zahramahmoodlee2012@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          <a href="https://github.com/zahramh99" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const btn = document.getElementById("themeBtn");
+    const icon = btn.querySelector("i");
+    const label = btn.querySelector("span");
+
+    const saved = localStorage.getItem("theme");
+    if(saved === "light"){
+      document.body.classList.add("light");
+      icon.className = "fa-solid fa-sun";
+      label.textContent = "Dark";
+    }else{
+      icon.className = "fa-solid fa-moon";
+      label.textContent = "Light";
+    }
+
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      const isLight = document.body.classList.contains("light");
+      if(isLight){
+        icon.className = "fa-solid fa-sun";
+        label.textContent = "Dark";
+        localStorage.setItem("theme","light");
+      }else{
+        icon.className = "fa-solid fa-moon";
+        label.textContent = "Light";
+        localStorage.setItem("theme","dark");
+      }
+    });
+  </script>
 </body>
 </html>

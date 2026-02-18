@@ -178,10 +178,12 @@
       padding: 18px;
       box-shadow: 0 10px 30px rgba(0,0,0,.25);
       transition: transform .18s ease, border-color .18s ease;
+      display:block;
     }
     .card:hover{
       transform: translateY(-2px);
       border-color: var(--stroke);
+      text-decoration:none;
     }
 
     .card h3{
@@ -255,7 +257,7 @@
       background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(255,255,255,.05));
       position:relative;
 
-      aspect-ratio: 1 / 1;  /* ✅ مربعی */
+      aspect-ratio: 1 / 1;
       width:100%;
     }
     .profile img{
@@ -426,12 +428,6 @@
       text-decoration:none;
     }
 
-    .divider{
-      height:1px;
-      background: rgba(255,255,255,.10);
-      margin: 18px 0 0;
-    }
-
     /* Nice lists */
     .nice-list{
       line-height:1.9;
@@ -493,6 +489,71 @@
       color: var(--muted);
       line-height: 1.85;
     }
+
+    /* Animation Showcase */
+    .anim-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:18px;
+    }
+
+    .anim-card{
+      position:relative;
+      border-radius: 20px;
+      overflow:hidden;
+      border:1px solid var(--stroke2);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      transition: transform .22s ease, border-color .22s ease;
+      aspect-ratio: 1 / 1;
+      box-shadow: 0 10px 30px rgba(0,0,0,.22);
+      display:block;
+    }
+    .anim-card:hover{
+      transform: translateY(-4px);
+      border-color: var(--stroke);
+      text-decoration:none;
+    }
+
+    .anim-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition: transform .45s ease;
+      filter: contrast(1.03) saturate(1.02);
+    }
+    .anim-card:hover img{
+      transform: scale(1.06);
+    }
+
+    .anim-overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, transparent 42%, rgba(0,0,0,.78));
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      padding:16px;
+      pointer-events:none;
+    }
+
+    .anim-title{
+      font-weight: 800;
+      letter-spacing:.2px;
+      font-size: 1.02rem;
+      line-height: 1.25;
+    }
+
+    .anim-pill{
+      font-size:.82rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.92);
+      white-space:nowrap;
+    }
   </style>
 </head>
 
@@ -548,17 +609,13 @@
               <div class="name">Zahra Gharehmahmoodlee</div>
               <div class="uni">B.Sc. in Computer Science — Amirkabir University of Technology</div>
 
+              <!-- ✅ UPDATED ABOUT ME (LLM + Pipeline + Bioinformatics + AI in Health) -->
               <p class="bio">
-                A Computer Science graduate with combined research and technical experience in artificial intelligence and data-driven systems.
-                My background bridges rigorous academic research with hands-on system development across natural language processing,
-                computer vision, and large-scale machine learning workflows.
+                I'm Zahra Gharehmahmoodlee, a Computer Science graduate from Amirkabir University of Technology with research experience at the intersection of machine learning, large language models, and biomedical data science. My work focuses on designing robust and interpretable AI systems, particularly through transformer-based architectures, retrieval-augmented generation (RAG), and reproducible end-to-end ML pipelines.
                 <br/><br/>
-                I have worked on transformer-based NLP systems, retrieval-augmented pipelines, interpretable deep learning models,
-                and medical imaging applications, with a consistent focus on building reliable, well-evaluated, and practically deployable solutions.
-                My work reflects both algorithmic depth and engineering discipline—spanning model design, experimentation, implementation, and system integration.
+                I have developed adaptive LLM-driven summarization systems, fine-tuned transformer models, and implemented scalable retrieval pipelines for multilingual data. In parallel, I have worked on biomedical and neuroimaging projects, including fMRI-based classification pipelines and interpretable CNN models for medical imaging. These experiences strengthened my interest in Bioinformatics and AI in Health, where large-scale biological data, representation learning, and intelligent modeling intersect.
                 <br/><br/>
-                I am particularly interested in advancing robust and interpretable AI methods within data-intensive scientific and healthcare domains,
-                and in contributing to research environments where strong computational foundations meet real-world impact.
+                My research goal is to build reliable, interpretable, and data-efficient learning systems capable of extracting meaningful patterns from complex biological and clinical datasets. I am particularly motivated by applications in precision medicine, computational biology, and multimodal health data integration, where strong machine learning foundations can directly contribute to scientific discovery and healthcare impact.
               </p>
 
               <div class="list" style="margin-top:14px">
@@ -642,48 +699,62 @@
       </div>
 
       <div class="section-body">
+        <!-- ✅ FIXED ORDER + FIXED NUMBERS -->
         <div class="toc-grid">
           <a class="toc-item" href="#featured">
             <div class="lbl">Featured Projects</div>
             <div class="num">01</div>
           </a>
+
           <a class="toc-item" href="#research">
             <div class="lbl">Research Output</div>
             <div class="num">02</div>
           </a>
+
           <a class="toc-item" href="#interests">
             <div class="lbl">Research Interests</div>
             <div class="num">03</div>
           </a>
+
           <a class="toc-item" href="#skills">
             <div class="lbl">Technical Skills</div>
             <div class="num">04</div>
           </a>
+
           <a class="toc-item" href="#experience">
             <div class="lbl">Experience</div>
             <div class="num">05</div>
           </a>
+
           <a class="toc-item" href="#more">
             <div class="lbl">Additional Projects</div>
             <div class="num">06</div>
           </a>
+
           <a class="toc-item" href="#courses">
             <div class="lbl">Courses</div>
             <div class="num">07</div>
           </a>
+
           <a class="toc-item" href="#languages">
             <div class="lbl">Languages</div>
             <div class="num">08</div>
           </a>
+
           <a class="toc-item" href="#activities">
             <div class="lbl">Activities</div>
             <div class="num">09</div>
+          </a>
+
+          <a class="toc-item" href="#animation">
+            <div class="lbl">Animation & 3D</div>
+            <div class="num">10</div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED PROJECTS -->
+    <!-- FEATURED PROJECTS (✅ CLICKABLE + LINKS ADDED) -->
     <section class="section" id="featured">
       <div class="section-head">
         <div>
@@ -695,42 +766,44 @@
 
       <div class="section-body">
         <div class="grid grid-auto">
-          <div class="card">
+
+          <a class="card" href="https://github.com/zahramh99/mri-brain-tumor-classifier" target="_blank" rel="noreferrer">
             <h3>Brain Tumor Detection</h3>
             <p>Applied deep CNNs for early-stage brain tumor classification and visualization through Grad-CAM for interpretability in clinical settings.</p>
             <div class="tags">
               <span class="tag">Deep Learning</span><span class="tag">Grad-CAM</span><span class="tag">Medical AI</span><span class="tag">TensorFlow</span><span class="tag">Neuroimaging</span>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a class="card" href="https://github.com/zahramh99/visionx" target="_blank" rel="noreferrer">
             <h3>VisionX: Explainable CNNs</h3>
             <p>Modular, interpretable CNN with visualization tools for explainability and model behavior analysis in medical imaging applications.</p>
             <div class="tags">
               <span class="tag">PyTorch</span><span class="tag">CNN</span><span class="tag">Explainable AI</span><span class="tag">Medical Imaging</span><span class="tag">Diagnostics</span>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a class="card" href="https://github.com/zahramh99/ClinicalClusterAI" target="_blank" rel="noreferrer">
             <h3>ClinicalClusterAI</h3>
             <p>Interpretable patient clustering pipeline for clinical outcome prediction from heterogeneous hospital data.</p>
             <div class="tags">
               <span class="tag">Clustering</span><span class="tag">Clinical Data</span><span class="tag">Predictive Modeling</span><span class="tag">Python</span><span class="tag">Scikit-learn</span>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a class="card" href="https://github.com/zahramh99/ADHD-fMRI-Classification-Pipeline" target="_blank" rel="noreferrer">
             <h3>ADHD-fMRI Classification Pipeline</h3>
             <p>Machine learning pipeline for predicting ADHD diagnosis and biological sex from fMRI-based brain connectome data using PCA, feature selection, and XGBoost, with cross-dataset evaluation.</p>
             <div class="tags">
               <span class="tag">Neuroimaging</span><span class="tag">fMRI</span><span class="tag">Biomedical ML</span><span class="tag">XGBoost</span><span class="tag">PCA</span>
             </div>
-          </div>
+          </a>
+
         </div>
       </div>
     </section>
 
-    <!-- RESEARCH OUTPUT -->
+    <!-- RESEARCH OUTPUT (✅ THESIS: PROVIDED UPON REQUEST) -->
     <section class="section" id="research">
       <div class="section-head">
         <div>
@@ -747,7 +820,7 @@
             <p>
               <strong>Adaptive Retrieval-Augmented Summarization of User Opinions with Efficient LLMs</strong><br/>
               Amirkabir University of Technology | Grade: 19.25/20<br/>
-              <em>Developed efficient LLM-based summarization systems with adaptive retrieval mechanisms.</em>
+              <em>The thesis will be provided upon request.</em>
             </p>
           </div>
           <div class="card">
@@ -1111,6 +1184,55 @@
       </div>
     </section>
 
+    <!-- ✅ MOVED: ANIMATION & 3D (NOW AFTER ACTIVITIES, BEFORE THANK YOU) -->
+    <section class="section" id="animation">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Creative Work</div>
+          <div class="title">Animation & 3D Highlights</div>
+        </div>
+        <div style="opacity:.7">ArtStation</div>
+      </div>
+
+      <div class="section-body">
+        <div class="anim-grid">
+
+          <a class="anim-card" href="https://www.artstation.com/artwork/L41rl0" target="_blank" rel="noreferrer" aria-label="Dragon - ArtStation">
+            <img src="dragon.jpg" alt="Dragon Sculpt Study">
+            <div class="anim-overlay">
+              <div class="anim-title">Dragon Sculpt</div>
+              <div class="anim-pill">View</div>
+            </div>
+          </a>
+
+          <a class="anim-card" href="https://www.artstation.com/artwork/2BEADx" target="_blank" rel="noreferrer" aria-label="Surreal Column - ArtStation">
+            <img src="column.jpg" alt="Surreal Column Sculpture">
+            <div class="anim-overlay">
+              <div class="anim-title">Surreal Column</div>
+              <div class="anim-pill">View</div>
+            </div>
+          </a>
+
+          <a class="anim-card" href="https://www.artstation.com/artwork/kN5b2n" target="_blank" rel="noreferrer" aria-label="Classical Bust - ArtStation">
+            <img src="bust.jpg" alt="Classical Bust Study">
+            <div class="anim-overlay">
+              <div class="anim-title">Classical Bust</div>
+              <div class="anim-pill">View</div>
+            </div>
+          </a>
+
+          <a class="anim-card" href="https://www.artstation.com/artwork/y4PWR9" target="_blank" rel="noreferrer" aria-label="Enchanted Forest Guardian - ArtStation">
+            <img src="deer.jpg" alt="Enchanted Forest Guardian">
+            <div class="anim-overlay">
+              <div class="anim-title">Forest Guardian</div>
+              <div class="anim-pill">View</div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
     <!-- THANK YOU -->
     <section class="section">
       <div class="section-body thanks">
@@ -1158,4 +1280,3 @@
   </script>
 </body>
 </html>
-

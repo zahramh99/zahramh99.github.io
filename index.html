@@ -238,7 +238,7 @@
       display:inline-block;
     }
 
-    /* ✅ UPDATED: About grid (bigger + responsive) */
+    /* About grid (bigger + responsive) */
     .about{
       display:grid;
       grid-template-columns: minmax(280px, 420px) 1fr;
@@ -249,14 +249,13 @@
       .about{ grid-template-columns:1fr; }
     }
 
-    /* ✅ UPDATED: Square profile image box */
+    /* Square profile image box */
     .profile{
       border: 1px solid var(--stroke2);
       border-radius: 20px;
       overflow:hidden;
       background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(255,255,255,.05));
       position:relative;
-
       aspect-ratio: 1 / 1;
       width:100%;
     }
@@ -609,7 +608,6 @@
               <div class="name">Zahra Gharehmahmoodlee</div>
               <div class="uni">B.Sc. in Computer Science — Amirkabir University of Technology</div>
 
-              <!-- ✅ UPDATED ABOUT ME (LLM + Pipeline + Bioinformatics + AI in Health) -->
               <p class="bio">
                 I'm Zahra Gharehmahmoodlee, a Computer Science graduate from Amirkabir University of Technology with research experience at the intersection of machine learning, large language models, and biomedical data science. My work focuses on designing robust and interpretable AI systems, particularly through transformer-based architectures, retrieval-augmented generation (RAG), and reproducible end-to-end ML pipelines.
                 <br/><br/>
@@ -626,15 +624,20 @@
             </div>
 
             <div class="mini-grid">
+              <!-- UPDATED EDUCATION CARD (with NODET, fixed Inverse School) -->
               <div class="card">
                 <h3>Education</h3>
                 <p class="muted">
+                  <strong>The National Organization for Development of Exceptional Talents (NODET)</strong><br/>
+                  High School Diploma – Mathematics & Physics<br/><br/>
+
                   <strong>Amirkabir University of Technology</strong><br/>
                   B.Sc., Computer Science<br/>
                   September 2018 - August 2023<br/>
                   <em>Thesis: Adaptive Retrieval-Augmented Summarization of User Opinions with Efficient LLMs (Grade: 19.25/20)</em><br/><br/>
+
                   <strong>Inverse School</strong><br/>
-                  3D Modeling Student — Current
+                  3D Modeling
                 </p>
               </div>
 
@@ -675,8 +678,13 @@
                 <span class="tag">Transformers</span>
                 <span class="tag">Hugging Face</span>
                 <span class="tag">RAG</span>
+                <span class="tag">LLMs</span>
+                <span class="tag">Generative AI</span>
+                <span class="tag">Multimodal Learning</span>
+                <span class="tag">Neuro-inspired AI</span>
                 <span class="tag">Medical Imaging</span>
                 <span class="tag">Neuroimaging (fMRI)</span>
+                <span class="tag">NLP</span>
                 <span class="tag">Docker</span>
                 <span class="tag">Linux</span>
                 <span class="tag">Git</span>
@@ -699,7 +707,6 @@
       </div>
 
       <div class="section-body">
-        <!-- ✅ FIXED ORDER + FIXED NUMBERS -->
         <div class="toc-grid">
           <a class="toc-item" href="#featured">
             <div class="lbl">Featured Projects</div>
@@ -750,11 +757,17 @@
             <div class="lbl">Animation & 3D</div>
             <div class="num">10</div>
           </a>
+
+          <!-- NEW FUN FACTS LINK (#11) -->
+          <a class="toc-item" href="#funfacts">
+            <div class="lbl">Fun Facts</div>
+            <div class="num">11</div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED PROJECTS (✅ CLICKABLE + LINKS ADDED) -->
+    <!-- FEATURED PROJECTS -->
     <section class="section" id="featured">
       <div class="section-head">
         <div>
@@ -803,7 +816,7 @@
       </div>
     </section>
 
-    <!-- RESEARCH OUTPUT (✅ THESIS: PROVIDED UPON REQUEST) -->
+    <!-- RESEARCH OUTPUT -->
     <section class="section" id="research">
       <div class="section-head">
         <div>
@@ -1154,7 +1167,7 @@
       </div>
     </section>
 
-    <!-- EXTRACURRICULAR (ACCORDION) -->
+    <!-- EXTRACURRICULAR (ACCORDION) - UPDATED WITH NEW ACTIVITIES -->
     <section class="section" id="activities">
       <div class="section-head">
         <div>
@@ -1177,6 +1190,9 @@
                 <li>Member of Student Scientific Chapter — Amirkabir University of Technology (2021–2022)</li>
                 <li>Volunteer Columnist, Halgheh Magazine — Amirkabir University of Technology (2021–2022)</li>
                 <li>Chair of Git Webinar — Amirkabir University of Technology (Sep 2020–Dec 2020)</li>
+                <li>Won the provincial teenage writing contest (2011)</li>
+                <li>School theater group – won second place in the province (2013)</li>
+                <li>Joined "Dasthaye Mehraban" charity (DMNGO) – 2016</li>
               </ul>
             </div>
           </details>
@@ -1184,7 +1200,7 @@
       </div>
     </section>
 
-    <!-- ✅ MOVED: ANIMATION & 3D (NOW AFTER ACTIVITIES, BEFORE THANK YOU) -->
+    <!-- ANIMATION & 3D -->
     <section class="section" id="animation">
       <div class="section-head">
         <div>
@@ -1229,6 +1245,38 @@
             </div>
           </a>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW FUN FACTS SECTION (#11) -->
+    <section class="section" id="funfacts">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Just for fun</div>
+          <div class="title">Fun Facts About Me!</div>
+        </div>
+        <div style="opacity:.7">🎯</div>
+      </div>
+
+      <div class="section-body">
+        <div class="card" style="text-align: center;">
+          <p style="font-size: 1.1rem; line-height: 1.8;">
+            Besides helping with charities, animation, and writing, I love:<br/><br/>
+            🏹 <strong>Archery</strong> &nbsp;&nbsp;|&nbsp;&nbsp;
+            🎮 <strong>Gaming</strong> &nbsp;&nbsp;|&nbsp;&nbsp;
+            📜 <strong>Poetry</strong> &nbsp;&nbsp;|&nbsp;&nbsp;
+            ✈️ <strong>Traveling</strong>
+          </p>
+          <div class="tags" style="justify-content: center; margin-top: 20px;">
+            <span class="tag">🏹 Archery</span>
+            <span class="tag">🎮 Gaming</span>
+            <span class="tag">📜 Poetry</span>
+            <span class="tag">✈️ Traveling</span>
+            <span class="tag">❤️ Charity</span>
+            <span class="tag">✍️ Writing</span>
+            <span class="tag">🎨 Animation</span>
+          </div>
         </div>
       </div>
     </section>
